@@ -120,5 +120,4 @@
 @media (max-width: 700px) {
   .hint { display: none; }
   .card { height: 50vh; }
-  .v1 { height: 38vh; }
 }
