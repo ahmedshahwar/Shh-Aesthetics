@@ -76,3 +76,5 @@ desktop.ini
 *.bak
 *.orig
 *~
+
+.gitignore
