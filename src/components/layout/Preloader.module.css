@@ -1,0 +1,62 @@
+.wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  border-bottom-left-radius: 50% 6vh;
+  border-bottom-right-radius: 50% 6vh;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(280px, 70vw);
+}
+
+.word {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: var(--champagne);
+  letter-spacing: 0.02em;
+}
+
+.dots { display: inline-flex; }
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  margin-top: 2rem;
+  background: rgba(201, 178, 140, 0.18);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--champagne);
+  transform-origin: left;
+}
+
+.meta {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  color: var(--champagne);
+}

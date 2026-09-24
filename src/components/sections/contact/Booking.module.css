@@ -1,0 +1,70 @@
+.section {
+  margin-top: 0;
+  padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+/* Copy on the left, facts on the right; the calendar gets the full width
+   below, because GHL's details form overflows sideways in a narrow frame. */
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.calendar {
+  width: 100%;
+  min-width: 0;
+}
+
+.intro :global(.eyebrow) { color: var(--burgundy); margin-bottom: 1.5rem; }
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-section);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.lede { margin-top: 1.75rem; max-width: 28rem; color: var(--taupe); }
+
+.facts { border-top: 1px solid var(--line-light); }
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line-light);
+  transition: padding 0.5s var(--ease);
+}
+.fact:hover { padding-left: 0.6rem; padding-right: 0.6rem; }
+.fact dt {
+  align-self: center;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.fact dd { font-family: var(--font-display); font-size: 1.2rem; text-align: right; }
+.fact:hover dd { font-style: italic; color: var(--burgundy); }
+
+.fallback { margin-top: 1.75rem; font-size: 0.9rem; color: var(--taupe); }
+.fallback a {
+  color: var(--ink);
+  font-weight: 500;
+  background: linear-gradient(var(--burgundy), var(--burgundy)) 0 100% / 100% 1px no-repeat;
+  transition: color 0.3s var(--ease);
+}
+.fallback a:hover { color: var(--burgundy); }
+
+@media (max-width: 960px) {
+  .intro { grid-template-columns: 1fr; align-items: start; }
+}

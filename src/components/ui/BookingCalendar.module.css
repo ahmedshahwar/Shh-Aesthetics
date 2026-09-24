@@ -1,0 +1,111 @@
+.card {
+  border-radius: 1.5rem;
+  background: #FFFDF9;
+  border: 1px solid var(--line-light);
+  box-shadow: 0 40px 90px rgba(13, 13, 13, 0.12);
+  overflow: hidden;
+  transition: transform 0.7s var(--ease), box-shadow 0.7s var(--ease);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 50px 110px rgba(13, 13, 13, 0.16);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid var(--line-light);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.dots { display: inline-flex; gap: 6px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--ivory-2); }
+.dots i:first-child { background: var(--burgundy); }
+.dots i:nth-child(2) { background: var(--champagne); }
+.secure { margin-left: auto; color: var(--taupe); font-weight: 500; }
+
+/* GHL's form_embed.js resizes the iframe height to fit its content */
+.frame {
+  display: block;
+  width: 100%;
+  min-height: 760px;
+  border: 0;
+  overflow: hidden;
+}
+
+/* ── Placeholder ── */
+.placeholder {
+  min-height: 640px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.skeleton {
+  border: 1px dashed rgba(158, 134, 96, 0.6);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.month span { width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--line-light); }
+
+.days, .dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+.days span {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--taupe);
+}
+.dates { margin-top: 0.75rem; }
+.dates span {
+  aspect-ratio: 1;
+  border-radius: 0.6rem;
+  background: linear-gradient(90deg, var(--ivory) 0%, var(--ivory-2) 50%, var(--ivory) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+.dates .open { background: var(--champagne); animation: none; transition: transform 0.3s var(--ease); }
+.dates .open:hover { transform: scale(1.12); background: var(--burgundy); }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+.note {
+  font-size: 0.9rem;
+  color: var(--taupe);
+  line-height: 1.7;
+}
+.note strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.note code {
+  font-size: 0.8em;
+  padding: 0.1em 0.4em;
+  margin: 0 0.2em;
+  border-radius: 0.3em;
+  background: var(--ivory-2);
+  color: var(--burgundy);
+}

@@ -1,0 +1,160 @@
+.section {
+  padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.copy :global(.eyebrow) { color: var(--burgundy); margin-bottom: 1.5rem; }
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-section);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  margin-top: 1.75rem;
+  max-width: 32rem;
+  color: var(--taupe);
+}
+
+.areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+.areas li {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-light);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.areas li:hover { background: var(--burgundy); border-color: var(--burgundy); color: var(--ivory); }
+
+/* ── Steps with a self-drawing route line ── */
+.steps {
+  position: relative;
+  margin: 2.75rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.route {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 1px;
+  background: var(--burgundy);
+  transform-origin: top;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 1px;
+  background: var(--line-light);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  transition: transform 0.5s var(--ease);
+}
+.step:hover { transform: translateX(8px); }
+
+.stepNum {
+  position: relative;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ivory);
+  border: 1px solid var(--burgundy);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.step:hover .stepNum { background: var(--burgundy); color: var(--ivory); }
+
+.step h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.step:hover h3 { font-style: italic; color: var(--burgundy); }
+.step p { margin-top: 0.25rem; font-size: 0.95rem; color: var(--taupe); max-width: 30rem; }
+
+/* ── Image ── */
+.visual { position: relative; }
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-section) var(--radius-section) 999px 999px;
+  overflow: hidden;
+}
+.frameInner { position: absolute; inset: -12% 0; }
+.img { width: 100%; height: 100%; }
+.img img { transition: transform 1.2s var(--ease), opacity 1s var(--ease); }
+.frame:hover .img img { transform: scale(1.07); }
+
+.tag {
+  position: absolute;
+  top: 10%;
+  left: -2.5rem;
+  padding: 1rem 1.4rem;
+  border-radius: 1rem;
+  background: var(--burgundy);
+  color: var(--ivory);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  box-shadow: 0 20px 40px rgba(74, 32, 40, 0.3);
+}
+.tag span {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champagne);
+}
+
+.cities { 
+  margin-top: 1rem; 
+  max-width: 34rem; 
+  font-size: 0.85rem; 
+  color: var(--taupe);
+ }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .visual { width: 100%; max-width: 420px; margin-left: auto; }
+  .tag { left: -0.5rem; top: 6%; }
+}

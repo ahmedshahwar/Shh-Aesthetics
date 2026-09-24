@@ -1,0 +1,179 @@
+.section {
+  padding: var(--section-y) 0 calc(var(--section-y) * 0.6);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: end;
+  gap: 3rem;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+.head :global(.eyebrow) { color: var(--champagne); margin-bottom: 1.5rem; }
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-section);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.intro { color: var(--stone); max-width: 30rem; justify-self: end; }
+.intro em { font-family: var(--font-display); font-size: 1.2em; color: var(--ivory); }
+
+/* ── Sticky stack ── */
+.slot {
+  position: sticky;
+  top: calc(6.5rem + var(--i) * 1.75rem);
+  height: auto;
+  padding-bottom: 12vh;
+}
+.slot:last-child { padding-bottom: 0; }
+
+.card {
+  --card-fg: var(--ivory);
+  --card-muted: var(--stone);
+  --card-line: var(--line-dark);
+  --card-accent: var(--champagne);
+
+  height: min(76vh, 640px);
+  border-radius: var(--radius-section);
+  transform-origin: 50% 0%;
+  color: var(--card-fg);
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.dark { background: var(--ink-3); border: 1px solid var(--line-dark); }
+.light {
+  background: var(--ivory);
+  --card-fg: var(--ink);
+  --card-muted: var(--taupe);
+  --card-line: var(--line-light);
+  --card-accent: var(--burgundy);
+}
+.gold {
+  background: var(--champagne);
+  --card-fg: var(--ink);
+  --card-muted: rgba(13, 13, 13, 0.68);
+  --card-line: rgba(13, 13, 13, 0.16);
+  --card-accent: var(--burgundy);
+}
+
+/* Hover zoom lives on the inner layer so it never fights the scroll scale */
+.cardInner {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border-radius: inherit;
+  transition: transform 0.7s var(--ease);
+}
+.card:hover .cardInner { transform: scale(1.015); }
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(0.75rem, 2vw, 1.75rem);
+  min-height: 0;
+}
+
+.meta {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--card-line);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--card-accent);
+}
+
+.title {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sass {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.35;
+  color: var(--card-accent);
+  max-width: 26ch;
+}
+
+.desc {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--card-muted);
+  max-width: 42ch;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+}
+.items li {
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--card-fg);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.items li:hover { background: var(--card-fg); color: var(--ink); border-color: var(--card-fg); }
+.light .items li:hover, .gold .items li:hover { color: var(--ivory); }
+
+.media {
+  position: relative;
+  border-radius: calc(var(--radius-section) - 0.75rem);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.mediaInner { position: absolute; inset: -8% 0; }
+.img { width: 100%; height: 100%; }
+.img img { transition: transform 1.2s var(--ease), opacity 1s var(--ease); }
+.card:hover .img img { transform: scale(1.08); }
+
+.mediaTag {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(13, 13, 13, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ivory);
+}
+
+@media (max-width: 900px) {
+  .head { grid-template-columns: 1fr; }
+  .intro { justify-self: start; }
+
+  .slot { top: calc(5.5rem + var(--i) * 1rem); padding-bottom: 6vh; }
+  .card { height: auto; }
+  .cardInner { grid-template-columns: 1fr; }
+  .media { grid-row: 1; height: 190px; }
+  .title { margin-top: 1.25rem; }
+  .desc { display: none; }
+  .items { margin: 1.25rem 0 1.5rem; }
+}

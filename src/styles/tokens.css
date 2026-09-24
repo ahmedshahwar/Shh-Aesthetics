@@ -1,0 +1,49 @@
+/* ══════════════════════════════════════
+   SHH AESTHETICS · Design Tokens
+   ══════════════════════════════════════ */
+
+:root {
+  /* ── Core palette ── */
+  --ink:          #0D0D0D;
+  --ink-2:        #141312;
+  --ink-3:        #1C1A18;
+  --ivory:        #F4EFE8;
+  --ivory-2:      #EAE2D6;
+  --stone:        #B8AEA3;
+  --taupe:        #6E645A;
+  --champagne:    #C9B28C;
+  --champagne-lt: #DCC9A7;
+  --champagne-dk: #9E8660;
+  --burgundy:     #4A2028;
+  --burgundy-lt:  #6A3240;
+
+  --line-dark:  rgba(201, 178, 140, 0.16);
+  --line-light: rgba(13, 13, 13, 0.12);
+
+  /* ── Typography ── */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --fs-hero:      clamp(4rem, 7.4vw, 5.625rem);   /* 64 to 90px  */
+  --fs-section:   clamp(2.5rem, 4.6vw, 3.5rem);   /* 40 to 56px  */
+  --fs-statement: clamp(1.75rem, 3.4vw, 3rem);    /* editorial paragraph */
+  --fs-title:     clamp(1.75rem, 2.6vw, 2.5rem);  /* card titles */
+  --fs-body:      clamp(1rem, 1.1vw, 1.125rem);   /* 16 to 18px  */
+  --fs-nav:       clamp(0.6875rem, 0.85vw, 0.8125rem); /* 11 to 13px */
+  --fs-button:    0.71875rem;                      /* 11.5px   */
+  --fs-label:     0.6875rem;                       /* 11px     */
+
+  --track-logo:  0.32em;
+  --track-label: 0.22em;
+  --track-nav:   0.16em;
+
+  /* ── Space ── */
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --section-y: clamp(6rem, 14vh, 11rem);
+  --max-w: 1320px;
+  --radius-section: clamp(1.5rem, 3vw, 2.5rem);
+
+  /* ── Motion ── */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}

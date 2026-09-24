@@ -1,0 +1,32 @@
+# Shh Aesthetics & Wellness
+# Search engines and AI assistants are welcome to read the public site.
+ 
+User-agent: *
+Allow: /
+ 
+# AI answer engines (listed explicitly so they are never blocked by mistake)
+User-agent: GPTBot
+Allow: /
+ 
+User-agent: OAI-SearchBot
+Allow: /
+ 
+User-agent: ChatGPT-User
+Allow: /
+ 
+User-agent: ClaudeBot
+Allow: /
+ 
+User-agent: Claude-SearchBot
+Allow: /
+ 
+User-agent: PerplexityBot
+Allow: /
+ 
+User-agent: Google-Extended
+Allow: /
+ 
+User-agent: Applebot-Extended
+Allow: /
+ 
+Sitemap: https://shhaestheticswellness.com/sitemap.xml

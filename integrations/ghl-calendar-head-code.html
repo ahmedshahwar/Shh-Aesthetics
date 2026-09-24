@@ -1,0 +1,405 @@
+<style>
+/* ==========================================================================
+   SHH AESTHETICS · GHL Booking Calendar Theme
+   NOT for the calendar's "Custom Code" field (GHL never loads it into the
+   booking widget). Paste into a GHL funnel/website page that holds the
+   calendar element: Page settings > Custom CSS (paste as-is), or the page's
+   head tracking code (use ghl-calendar-head-code.html, already wrapped).
+   Palette and fonts match the website (ivory card, ink text, burgundy +
+   champagne accents, Cormorant Garamond headings, Manrope body).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@400;500;600&display=swap');
+
+/* ── 1. Colour tokens (GHL reads these everywhere) ── */
+html:root,
+:root {
+  --appointment_widgets-primary-color: #4A2028 !important;        /* burgundy */
+  --appointment_widgets-light-primary-color: #C9B28C26 !important; /* champagne wash */
+  --appointment_widgets-background-color: #FFFDF9 !important;     /* paper ivory */
+  --appointment_widgets-border-color: #0D0D0D1F !important;
+  --appointment_widgets-text-color: #0D0D0D !important;
+  --appointment_widgets-light-text-color: #6E645A !important;
+  --appointment_widgets-blur-color: #FFFDF9B3 !important;
+
+  --shh-ink: #0D0D0D;
+  --shh-ivory: #F4EFE8;
+  --shh-paper: #FFFDF9;
+  --shh-taupe: #6E645A;
+  --shh-champagne: #C9B28C;
+  --shh-burgundy: #4A2028;
+  --shh-line: rgba(13, 13, 13, 0.12);
+  --shh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* When the calendar sits inside a GHL funnel/website page the colour
+   variables live on the widget itself, so set them there too. */
+#calendarAppointmentBookingMain,
+#appointment_widgets--revamp {
+  --appointment_widgets-primary-color: #4A2028 !important;
+  --appointment_widgets-light-primary-color: #C9B28C26 !important;
+  --appointment_widgets-background-color: #FFFDF9 !important;
+  --appointment_widgets-border-color: #0D0D0D1F !important;
+  --appointment_widgets-text-color: #0D0D0D !important;
+  --appointment_widgets-light-text-color: #6E645A !important;
+  --appointment_widgets-blur-color: #FFFDF9B3 !important;
+}
+
+/* ── 2. Base ── */
+html,
+body,
+#appointment_widgets--revamp {
+  background: var(--shh-paper) !important;
+}
+
+#appointment_widgets--revamp,
+#appointment_widgets--revamp *:not(svg):not(path) {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+#appointment_widgets--revamp {
+  color: var(--shh-ink) !important;
+}
+
+/* Remove GHL's default card chrome; the website already frames it */
+.appointment_widgets--revamp--inner,
+.appointment_widgets--revamp--booking,
+.appointment_widgets--revamp--container {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* ── 3. Left info panel (service name, duration, date) ── */
+.appointment_widgets--revamp--info-container {
+  border-color: var(--shh-line) !important;
+}
+
+#appointment_widgets--revamp .widgets--service-name {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 2rem !important;
+  font-weight: 300 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--shh-ink) !important;
+}
+
+.appointment_widgets--revamp--booking-info .booking-info-value {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: var(--shh-taupe) !important;
+}
+
+.appointment_widgets--revamp--booking-info svg,
+.appointment_widgets--revamp--booking-info svg path {
+  color: var(--shh-burgundy) !important;
+  stroke: var(--shh-burgundy) !important;
+}
+
+/* ── 4. "Select Date & Time" heading ── */
+#appointment_widgets--revamp .label-select-date {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.75rem !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  color: var(--shh-burgundy) !important;
+  letter-spacing: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* ── 5. Month header ── */
+.vdpHeader {
+  background: transparent !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.vdpPeriodControl > button {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  color: var(--shh-ink) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Arrow buttons: outlined circles that fill on hover */
+.vdpHeader .arrowPrevious,
+.vdpHeader .arrowNext {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--shh-line) !important;
+  background: transparent !important;
+  transition: background 0.4s var(--shh-ease), border-color 0.4s var(--shh-ease), transform 0.4s var(--shh-ease) !important;
+}
+
+.vdpHeader .arrowPrevious:not(.disabled):hover,
+.vdpHeader .arrowNext:not(.disabled):hover {
+  background: var(--shh-ink) !important;
+  border-color: var(--shh-ink) !important;
+  transform: scale(1.08);
+}
+
+.vdpHeader .arrowPrevious svg path,
+.vdpHeader .arrowNext svg path {
+  stroke: var(--shh-ink) !important;
+  fill: var(--shh-ink) !important;
+  transition: stroke 0.4s, fill 0.4s;
+}
+
+.vdpHeader .arrowPrevious:not(.disabled):hover svg path,
+.vdpHeader .arrowNext:not(.disabled):hover svg path {
+  stroke: var(--shh-ivory) !important;
+  fill: var(--shh-ivory) !important;
+}
+
+.vdpHeader .arrowPrevious.disabled,
+.vdpHeader .arrowNext.disabled {
+  opacity: 0.3 !important;
+}
+
+/* ── 6. Day grid ── */
+.vdpHeadCellContent {
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--shh-taupe) !important;
+}
+
+.vdpTable .vdpCell .vdpCellContent {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  border-radius: 50% !important;
+  transition: background 0.35s var(--shh-ease), color 0.35s var(--shh-ease), transform 0.35s var(--shh-ease) !important;
+}
+
+/* Bookable days: champagne wash */
+.vdpTable .vdpCell.selectable .vdpCellContent {
+  background: rgba(201, 178, 140, 0.25) !important;
+  color: var(--shh-ink) !important;
+}
+
+.vdpTable .vdpCell.selectable:hover .vdpCellContent {
+  background: var(--shh-champagne) !important;
+  color: var(--shh-ink) !important;
+  transform: scale(1.08);
+}
+
+/* Chosen day: burgundy */
+.vdpTable .vdpCell.selected .vdpCellContent,
+.vdpTable .vdpCell.selectable.selected .vdpCellContent {
+  background: var(--shh-burgundy) !important;
+  color: var(--shh-ivory) !important;
+  box-shadow: 0 8px 20px rgba(74, 32, 40, 0.28) !important;
+}
+
+/* Unavailable days: quiet */
+.vdpTable .vdpCell.disabled .vdpCellContent {
+  background: transparent !important;
+  color: rgba(13, 13, 13, 0.25) !important;
+}
+
+/* Today: small champagne dot under the number */
+.vdpTable .vdpCell.today .vdpCellContent {
+  position: relative;
+}
+.vdpTable .vdpCell.today .vdpCellContent::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--shh-champagne);
+  transform: translateX(-50%);
+}
+
+/* ── 7. Time zone picker ── */
+.widgets-timezone-picker .timezone-label {
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: var(--shh-taupe) !important;
+}
+
+.multi_select_calendar .multiselect__tags,
+.multi_select_calendar .multiselect__single,
+.multi_select_calendar .multiselect__input {
+  background: transparent !important;
+  color: var(--shh-ink) !important;
+  font-size: 0.85rem !important;
+}
+
+.multi_select_calendar .multiselect__tags {
+  border: 1px solid var(--shh-line) !important;
+  border-radius: 999px !important;
+  padding: 0.55rem 2.5rem 0.55rem 1rem !important;
+  transition: border-color 0.3s !important;
+}
+.multi_select_calendar:hover .multiselect__tags { border-color: var(--shh-champagne) !important; }
+
+.multiselect__content-wrapper {
+  border: 1px solid var(--shh-line) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 40px rgba(13, 13, 13, 0.12) !important;
+  background: var(--shh-paper) !important;
+}
+.multiselect__option--highlight {
+  background: var(--shh-burgundy) !important;
+  color: var(--shh-ivory) !important;
+}
+.multiselect__option--selected {
+  background: rgba(201, 178, 140, 0.25) !important;
+  color: var(--shh-ink) !important;
+}
+
+/* ── 8. Time slots: pills ── */
+.widgets-time-slots {
+  gap: 0.5rem !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--shh-champagne) transparent;
+}
+.widgets-time-slots::-webkit-scrollbar { width: 5px; }
+.widgets-time-slots::-webkit-scrollbar-thumb { background: var(--shh-champagne); border-radius: 99px; }
+
+.widgets-time-slots .widgets-time-slot {
+  border: 1px solid var(--shh-line) !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: var(--shh-ink) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  transition: background 0.35s var(--shh-ease), border-color 0.35s var(--shh-ease), color 0.35s var(--shh-ease), transform 0.35s var(--shh-ease) !important;
+}
+
+.widgets-time-slots .widgets-time-slot:hover {
+  border-color: var(--shh-burgundy) !important;
+  color: var(--shh-burgundy) !important;
+  transform: translateX(4px);
+}
+
+/* Selected slot (GHL marks it in a few different ways across versions) */
+.widgets-time-slots .widgets-time-slot.active,
+.widgets-time-slots .widgets-time-slot.selected,
+.widgets-time-slots .widgets-time-slot.selected-slot,
+.widgets-time-slots .widgets-time-slot:has(.btn:not(.disabled-slot)) {
+  background: var(--shh-burgundy) !important;
+  border-color: var(--shh-burgundy) !important;
+  color: var(--shh-ivory) !important;
+}
+
+/* The inline "Next / Confirm" button that appears inside a chosen slot */
+.widgets-time-slots .widgets-time-slot .btn:not(.disabled-slot) {
+  background: var(--shh-champagne) !important;
+  color: var(--shh-ink) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+}
+
+/* ── 9. Step 2: details form ── */
+#appointment_widgets--revamp label,
+#appointment_widgets--revamp .label-alignment,
+#appointment_widgets--revamp .form-builder--item label {
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--shh-taupe) !important;
+}
+
+#appointment_widgets--revamp input[type='text'],
+#appointment_widgets--revamp input[type='email'],
+#appointment_widgets--revamp input[type='tel'],
+#appointment_widgets--revamp input[type='number'],
+#appointment_widgets--revamp textarea,
+#appointment_widgets--revamp select,
+#appointment_widgets--revamp .form-control {
+  background: var(--shh-ivory) !important;
+  border: 1px solid transparent !important;
+  border-radius: 0.9rem !important;
+  color: var(--shh-ink) !important;
+  font-size: 0.95rem !important;
+  padding: 0.85rem 1rem !important;
+  box-shadow: none !important;
+  transition: border-color 0.3s var(--shh-ease), background 0.3s var(--shh-ease), box-shadow 0.3s var(--shh-ease) !important;
+}
+
+#appointment_widgets--revamp input:focus,
+#appointment_widgets--revamp textarea:focus,
+#appointment_widgets--revamp select:focus,
+#appointment_widgets--revamp .form-control:focus {
+  background: var(--shh-paper) !important;
+  border-color: var(--shh-burgundy) !important;
+  box-shadow: 0 0 0 4px rgba(74, 32, 40, 0.1) !important;
+  outline: none !important;
+}
+
+#appointment_widgets--revamp ::placeholder {
+  color: rgba(110, 100, 90, 0.7) !important;
+}
+
+/* Checkboxes / radios */
+#appointment_widgets--revamp input[type='checkbox'],
+#appointment_widgets--revamp input[type='radio'] {
+  accent-color: var(--shh-burgundy);
+}
+
+/* ── 10. Primary buttons (Next, Book, Schedule Meeting) ── */
+#appointment_widgets--revamp button[type='submit'],
+#appointment_widgets--revamp .btn-schedule,
+#appointment_widgets--revamp .btn-primary,
+#appointment_widgets--revamp .button-holder button,
+#appointment_widgets--revamp .form-btn {
+  background: var(--shh-ink) !important;
+  color: var(--shh-ivory) !important;
+  border: 1px solid var(--shh-ink) !important;
+  border-radius: 999px !important;
+  padding: 1rem 2rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+  transition: background 0.45s var(--shh-ease), border-color 0.45s var(--shh-ease), transform 0.45s var(--shh-ease) !important;
+}
+
+#appointment_widgets--revamp button[type='submit']:hover,
+#appointment_widgets--revamp .btn-schedule:hover,
+#appointment_widgets--revamp .btn-primary:hover,
+#appointment_widgets--revamp .button-holder button:hover,
+#appointment_widgets--revamp .form-btn:hover {
+  background: var(--shh-burgundy) !important;
+  border-color: var(--shh-burgundy) !important;
+  transform: translateY(-2px);
+}
+
+/* Back link / secondary actions */
+#appointment_widgets--revamp .appointment_widgets--revamp--navigation-container button,
+#appointment_widgets--revamp .btn-secondary {
+  background: transparent !important;
+  color: var(--shh-ink) !important;
+  border: 1px solid var(--shh-line) !important;
+  border-radius: 999px !important;
+}
+
+/* ── 11. Confirmation screen ── */
+#appointment_widgets--revamp h1,
+#appointment_widgets--revamp h2,
+#appointment_widgets--revamp h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 400 !important;
+  color: var(--shh-ink) !important;
+}
+
+/* ── 12. Links and selection ── */
+#appointment_widgets--revamp a { color: var(--shh-burgundy) !important; }
+::selection { background: var(--shh-champagne); color: var(--shh-ink); }
+</style>

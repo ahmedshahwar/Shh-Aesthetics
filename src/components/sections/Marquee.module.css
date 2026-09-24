@@ -1,0 +1,36 @@
+.section {
+  background: var(--burgundy);
+  color: var(--ivory);
+  padding: clamp(4rem, 9vw, 7rem) 0 calc(clamp(4rem, 9vw, 7rem) + var(--radius-section));
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  width: max-content;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 300;
+  line-height: 1.05;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.word {
+  transition: color 0.4s var(--ease), font-style 0s;
+}
+.word:hover { color: var(--champagne); font-style: italic; }
+
+.outlined { font-style: italic; }
+.outlined .word {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 178, 140, 0.8);
+}
+.outlined .word:hover { color: var(--champagne); -webkit-text-stroke-color: var(--champagne); }
+
+.star {
+  font-size: 0.3em;
+  color: var(--champagne);
+}

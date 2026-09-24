@@ -1,0 +1,221 @@
+/* ── Hero (pinned, same trick as the other pages) ── */
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 78svh;
+  min-height: 560px;
+}
+
+.stage {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  overflow: hidden;
+  transform-origin: 50% 0%;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 60% at 85% 30%, rgba(201, 178, 140, 0.14), transparent 70%),
+    radial-gradient(40% 55% at 5% 100%, rgba(74, 32, 40, 0.6), transparent 70%);
+}
+
+.heroInner { position: relative; padding-top: 5rem; }
+
+.eyebrow { color: var(--champagne); margin-bottom: 1.75rem; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+.title em { font-weight: 300; }
+
+.intro {
+  max-width: 36rem;
+  margin-top: 1.75rem;
+  color: var(--stone);
+}
+
+.updated {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--champagne);
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  pointer-events: none;
+}
+
+/* ── Document sheet ── */
+.body {
+  margin-top: 0;
+  padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 17rem 1fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+
+/* Sticky table of contents */
+.toc {
+  position: sticky;
+  top: 7rem;
+}
+.tocLabel {
+  margin-bottom: 1rem;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--burgundy);
+}
+.toc ol { border-left: 1px solid var(--line-light); }
+
+.tocLink {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.5rem 0 0.5rem 1.1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--taupe);
+  transition: color 0.3s var(--ease), padding 0.4s var(--ease);
+}
+.tocLink span { font-size: 0.7rem; opacity: 0.6; padding-top: 0.15rem; }
+.tocLink::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--burgundy);
+  transform: scaleY(0);
+  transition: transform 0.4s var(--ease);
+}
+.tocLink:hover { color: var(--ink); padding-left: 1.4rem; }
+.tocActive { color: var(--burgundy); font-weight: 600; }
+.tocActive::before { transform: scaleY(1); }
+
+/* Document */
+.doc { max-width: 46rem; }
+
+.block {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line-light);
+  scroll-margin-top: 6rem;
+}
+.block:first-child { padding-top: 0; border-top: 0; }
+
+.blockTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.blockTitle span {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--burgundy);
+}
+
+/* Readable legal copy */
+.prose { color: #4a433c; font-size: 1rem; line-height: 1.8; }
+.prose > * + * { margin-top: 1rem; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a {
+  color: var(--burgundy);
+  font-weight: 500;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: background-size 0.4s var(--ease);
+}
+.prose a:hover { background-size: 0 1px; background-position: 100% 100%; }
+
+.prose ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.prose li { position: relative; padding-left: 1.5rem; }
+.prose li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 0.6rem;
+  height: 1px;
+  background: var(--burgundy);
+}
+
+/* Labelled rows (used for the SMS program terms) */
+.prose dl { border-top: 1px solid var(--line-light); }
+.prose dl > div {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line-light);
+}
+.prose dt {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-top: 0.3rem;
+}
+.prose dd { margin: 0; }
+
+/* Contact card */
+.prose address {
+  font-style: normal;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: var(--ink);
+  color: var(--stone);
+  line-height: 1.9;
+}
+.prose address strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ivory);
+}
+.prose address a { color: var(--champagne); }
+
+@media (max-width: 900px) {
+  .hero { position: relative; height: auto; min-height: 0; }
+  .stage { padding: 7rem 0 4rem; }
+  .heroInner { padding-top: 0; }
+  .grid { grid-template-columns: 1fr; }
+  .toc { display: none; }
+  .prose dl > div { grid-template-columns: 1fr; gap: 0.35rem; }
+}

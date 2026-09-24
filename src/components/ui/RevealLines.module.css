@@ -1,0 +1,13 @@
+.mask {
+  display: block;
+  overflow: hidden;
+  /* room for descenders and italic overhang */
+  padding: 0 0.08em 0.08em;
+  margin: 0 -0.08em -0.08em;
+}
+
+.line {
+  display: block;
+  transform-origin: left bottom;
+  will-change: transform;
+}

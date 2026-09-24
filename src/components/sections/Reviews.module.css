@@ -1,0 +1,126 @@
+.section {
+  padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section));
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+.head :global(.eyebrow) { color: var(--burgundy); margin-bottom: 1.5rem; }
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-section);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.controls { display: flex; align-items: center; gap: 0.75rem; }
+.hint {
+  margin-right: 0.75rem;
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.arrow {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--line-light);
+  font-size: 1.1rem;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.arrow:hover { background: var(--ink); color: var(--ivory); transform: scale(1.08); }
+
+.viewport {
+  padding: 1.5rem 0 2rem;
+  cursor: grab;
+}
+.viewport:active { cursor: grabbing; }
+
+.track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  padding: 0 var(--gutter);
+}
+
+/* Cards: slightly askew like notes pinned to a board; hover straightens and zooms */
+.card {
+  --bg: var(--ivory-2);
+  --fg: var(--ink);
+  --muted: var(--taupe);
+  --star: var(--burgundy);
+
+  width: clamp(280px, 30vw, 380px);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: var(--bg);
+  color: var(--fg);
+  rotate: var(--tilt);
+  user-select: none;
+  transition: rotate 0.6s var(--ease), scale 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+.card:hover {
+  rotate: 0deg;
+  scale: 1.05;
+  box-shadow: 0 30px 60px rgba(13, 13, 13, 0.18);
+  z-index: 2;
+}
+
+.paper { --bg: #FFFDF9; }
+.ink { --bg: var(--ink); --fg: var(--ivory); --muted: var(--stone); --star: var(--champagne); }
+.champagne { --bg: var(--champagne); --star: var(--burgundy); --muted: rgba(13, 13, 13, 0.6); }
+.wine { --bg: var(--burgundy); --fg: var(--ivory); --muted: rgba(244, 239, 232, 0.7); --star: var(--champagne); }
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.stars { display: inline-flex; gap: 2px; color: var(--star); }
+.treatment {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Reviews are set in the sans, like something a real person typed */
+.text {
+  margin: 1.5rem 0 2rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.who { display: flex; align-items: center; gap: 0.75rem; }
+.avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+.name { font-size: 0.85rem; font-weight: 600; }
+
+@media (max-width: 700px) {
+  .head { flex-direction: column; align-items: flex-start; }
+  .hint { display: none; }
+}
