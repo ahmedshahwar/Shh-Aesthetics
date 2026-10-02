@@ -70,6 +70,7 @@ export const SERVICES = [
     description:
       'A conservative hand and a careful eye for proportion. We refine what is already there instead of reinventing it, so you still look like you, only better rested.',
     items: ['Botox & Dysport', 'Dermal fillers', 'Lip enhancement', 'Jawline contouring'],
+    cta: 'Plan my injectables',
     image: IMAGES.injectables,
     alt: 'Close-up of a cosmetic injection treatment',
     theme: 'dark',
@@ -82,6 +83,7 @@ export const SERVICES = [
     description:
       'A plan for the skin you actually have. Nurse practitioner-guided peptide therapy and a home routine with nothing in it you do not need.',
     items: ['Peptide therapy', 'Custom home regimens'],
+    cta: 'Build my skin plan',
     image: IMAGES.skincare,
     alt: 'Skincare products arranged on a vanity',
     theme: 'light',
@@ -94,6 +96,7 @@ export const SERVICES = [
     description:
       'Weight management planned around your health history, with honest expectations and follow-ups that keep you on track. How you feel matters as much as how you look.',
     items: ['Weight management', 'Goal setting', 'Regular check-ins'],
+    cta: 'Start my wellness plan',
     image: IMAGES.wellness,
     alt: 'A calm wellness moment at home',
     theme: 'gold',

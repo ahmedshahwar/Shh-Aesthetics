@@ -109,6 +109,8 @@
   font-weight: 500;
   color: var(--card-fg);
 }
+.cta { margin-top: 1.5rem; min-height: 2.75rem; padding: 0.65rem 1.3rem; }
+
 .items li:not(:last-child)::after {
   content: ',';
   margin-right: 0.35em;

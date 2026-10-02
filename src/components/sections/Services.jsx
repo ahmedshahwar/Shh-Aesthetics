@@ -1,10 +1,13 @@
 import { useRef } from 'react';
 import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { SERVICES } from '../../constants/content';
+import { CONTACT, SERVICES } from '../../constants/content';
 import { fadeUp, inView } from '../../lib/motion';
 import RevealLines from '../ui/RevealLines';
 import SmartImage from '../ui/SmartImage';
+import Button from '../ui/Button';
 import styles from './Services.module.css';
+
+const BUTTON_BY_THEME = { dark: 'outline', light: 'outlineDark', gold: 'outlineDark' };
 
 function ServiceCard({ service, index, total, progress, reduce }) {
   // Earlier cards shrink back slightly as later ones stack on top of them.
@@ -30,6 +33,10 @@ function ServiceCard({ service, index, total, progress, reduce }) {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+
+            <Button href={CONTACT.bookUrl} variant={BUTTON_BY_THEME[service.theme]} className={styles.cta}>
+              {service.cta}
+            </Button>
           </div>
 
           <div className={styles.media}>

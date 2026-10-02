@@ -30,7 +30,9 @@ export function scrollToTarget(target, instant = false) {
   const el = target === '#top' || target === 0 ? 0 : typeof target === 'string' ? document.querySelector(target) : target;
   if (el === null) return;
   if (lenis) {
-    lenis.scrollTo(el, { immediate: instant, duration: 1.4, force: true });
+    // The page may have just changed length (route switch); measure before scrolling.
+    lenis.resize();
+    lenis.scrollTo(el, { immediate: instant, duration: 1.2, force: true });
     return;
   }
   const behavior = instant ? 'instant' : 'smooth';
