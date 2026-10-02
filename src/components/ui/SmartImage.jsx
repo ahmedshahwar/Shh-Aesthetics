@@ -1,25 +1,34 @@
 import { useState } from 'react';
 import styles from './SmartImage.module.css';
 
-/** Lazy image that fades in on load and falls back to a branded tone if the source fails. */
-export default function SmartImage({ src, alt = '', className = '', eager = false }) {
-  const [state, setState] = useState('loading');
+const WIDTHS = [480, 800, 1200, 1600];
+
+/* Unsplash serves any width on request, so build a srcset and let the browser pick. */
+function responsive(src) {
+  if (!src.includes('unsplash.com')) return {};
+  const at = (w) => src.replace(/([?&])w=\d+/, `$1w=${w}`);
+  return { srcSet: WIDTHS.map((w) => `${at(w)} ${w}w`).join(', ') };
+}
+
+/** Lazy image with a branded backdrop. If the file fails to load, its alt text is shown in its place. */
+export default function SmartImage({ src, alt, className = '', eager = false, sizes = '(max-width: 900px) 100vw, 50vw' }) {
+  const [failed, setFailed] = useState(false);
 
   return (
-    <div className={`${styles.frame} ${className}`} data-state={state}>
-      {state !== 'error' && (
+    <div className={`${styles.frame} ${className}`}>
+      {failed ? (
+        <span className={styles.fallback} role="img" aria-label={alt}>{alt}</span>
+      ) : (
         <img
           src={src}
+          {...responsive(src)}
+          sizes={sizes}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
-          onLoad={() => setState('loaded')}
-          onError={() => setState('error')}
+          onError={() => setFailed(true)}
           className={styles.img}
         />
-      )}
-      {state === 'error' && (
-        <span className={styles.fallback} aria-hidden="true">shh</span>
       )}
     </div>
   );

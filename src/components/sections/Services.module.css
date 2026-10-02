@@ -3,26 +3,12 @@
 }
 
 .head {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: end;
-  gap: 3rem;
   margin-bottom: clamp(3rem, 7vw, 5rem);
 }
-.head :global(.eyebrow) { color: var(--champagne); margin-bottom: 1.5rem; }
 
-.heading {
-  font-family: var(--font-display);
-  font-size: var(--fs-section);
-  font-weight: 300;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-}
+.intro { margin-top: 1.5rem; color: var(--stone); max-width: 38rem; }
 
-.intro { color: var(--stone); max-width: 30rem; justify-self: end; }
-.intro em { font-family: var(--font-display); font-size: 1.2em; color: var(--ivory); }
-
-/* ── Sticky stack ── */
+/* Sticky stack */
 .slot {
   position: sticky;
   top: calc(6.5rem + var(--i) * 1.75rem);
@@ -60,7 +46,6 @@
   --card-accent: var(--burgundy);
 }
 
-/* Hover zoom lives on the inner layer so it never fights the scroll scale */
 .cardInner {
   height: 100%;
   display: grid;
@@ -68,9 +53,7 @@
   gap: clamp(1.5rem, 3vw, 3rem);
   padding: clamp(1.25rem, 2.5vw, 2rem);
   border-radius: inherit;
-  transition: transform 0.7s var(--ease);
 }
-.card:hover .cardInner { transform: scale(1.015); }
 
 .text {
   display: flex;
@@ -80,63 +63,56 @@
   min-height: 0;
 }
 
-.meta {
+.kicker {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--card-line);
   font-size: var(--fs-label);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--card-accent);
 }
 
 .title {
   margin-top: auto;
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
-  font-weight: 300;
-  line-height: 1;
+  font-size: clamp(2.6rem, 5vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1.02;
   letter-spacing: -0.02em;
 }
 
 .sass {
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
-  line-height: 1.35;
+  font-size: clamp(1.25rem, 1.6vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.3;
   color: var(--card-accent);
-  max-width: 26ch;
+  max-width: 28ch;
 }
 
 .desc {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  margin-top: 0.9rem;
+  font-size: var(--fs-small);
+  line-height: 1.65;
   color: var(--card-muted);
-  max-width: 42ch;
+  max-width: 44ch;
 }
 
 .items {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1.5rem 0 2rem;
-}
-.items li {
-  padding: 0.45rem 0.95rem;
-  border: 1px solid var(--card-line);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-line);
+  font-size: var(--fs-label);
+  font-weight: 500;
   color: var(--card-fg);
-  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
 }
-.items li:hover { background: var(--card-fg); color: var(--ink); border-color: var(--card-fg); }
-.light .items li:hover, .gold .items li:hover { color: var(--ivory); }
+.items li:not(:last-child)::after {
+  content: ',';
+  margin-right: 0.35em;
+}
 
 .media {
   position: relative;
@@ -145,30 +121,11 @@
   min-height: 0;
 }
 
-.mediaInner { position: absolute; inset: -8% 0; }
-.img { width: 100%; height: 100%; }
+.img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .img img { transition: transform 1.2s var(--ease), opacity 1s var(--ease); }
-.card:hover .img img { transform: scale(1.08); }
-
-.mediaTag {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(13, 13, 13, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--ivory);
-}
+.card:hover .img img { transform: scale(1.05); }
 
 @media (max-width: 900px) {
-  .head { grid-template-columns: 1fr; }
-  .intro { justify-self: start; }
-
   .slot { top: calc(5.5rem + var(--i) * 1rem); padding-bottom: 6vh; }
   .card { height: auto; }
   .cardInner { grid-template-columns: 1fr; }

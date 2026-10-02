@@ -1,18 +1,20 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { CONTACT } from '../../constants/content';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { CONTACT, GALLERY_HEADING } from '../../constants/content';
 import { IMAGES } from '../../constants/images';
-import MagneticButton from '../ui/MagneticButton';
+import Button from '../ui/Button';
 import SmartImage from '../ui/SmartImage';
 import styles from './Gallery.module.css';
 
-/** Vertical scroll drives a pinned horizontal filmstrip. */
+/** Vertical scroll drives a pinned horizontal filmstrip. With reduced motion it becomes a swipeable row. */
 export default function Gallery() {
   const outerRef = useRef(null);
   const trackRef = useRef(null);
+  const reduce = useReducedMotion();
   const [distance, setDistance] = useState(0);
 
   useLayoutEffect(() => {
+    if (reduce) return;
     const measure = () => {
       if (!trackRef.current) return;
       setDistance(Math.max(0, trackRef.current.scrollWidth - window.innerWidth));
@@ -25,7 +27,7 @@ export default function Gallery() {
       ro.disconnect();
       window.removeEventListener('resize', measure);
     };
-  }, []);
+  }, [reduce]);
 
   const { scrollYProgress } = useScroll({ target: outerRef, offset: ['start start', 'end end'] });
   const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
@@ -34,46 +36,38 @@ export default function Gallery() {
     <section
       id="gallery"
       ref={outerRef}
-      className={`sheet theme-ink ${styles.section}`}
-      style={{ height: `calc(100svh + ${distance}px)` }}
+      className={`sheet theme-ink ${styles.section} ${reduce ? styles.static : ''}`}
+      style={reduce ? undefined : { height: `calc(100svh + ${distance}px)` }}
+      aria-labelledby="gallery-title"
     >
       <div className={styles.pin}>
-        <div className={`container ${styles.head}`}>
-          <div>
-            <p className="eyebrow"><span>(05)</span> The vibe</p>
-            <h2 className={styles.heading}>
-              Glow, <em className="accent">unfiltered.</em>
-            </h2>
-          </div>
-          <p className={styles.hint}>
-            Keep scrolling <span aria-hidden="true">→</span>
-          </p>
+        <div className="container">
+          <h2 id="gallery-title" className="heading">{GALLERY_HEADING}</h2>
         </div>
 
-        <motion.div ref={trackRef} className={styles.track} style={{ x }}>
-          {IMAGES.gallery.map((item, i) => (
-            <figure key={item.caption} className={`${styles.card} ${styles[`v${i % 3}`]}`} data-cursor="View">
-              <SmartImage src={item.src} alt={item.caption} className={styles.img} />
-              <figcaption className={styles.caption}>
-                <span>0{i + 1}</span>
-                {item.caption}
-              </figcaption>
-            </figure>
-          ))}
+        <div className={styles.viewport}>
+          <m.ul ref={trackRef} className={styles.track} style={reduce ? undefined : { x }}>
+            {IMAGES.gallery.map((item) => (
+              <li key={item.caption}>
+                <figure className={styles.card}>
+                  <SmartImage src={item.src} alt={item.caption} className={styles.img} />
+                  <figcaption className={styles.caption}>{item.caption}</figcaption>
+                </figure>
+              </li>
+            ))}
 
-          <div className={styles.end}>
-            <p>
-              Your turn to be
-              <br />
-              <em>the secret.</em>
-            </p>
-            <MagneticButton href={CONTACT.bookUrl}>Book a consult</MagneticButton>
-          </div>
-        </motion.div>
-
-        <div className={`container ${styles.progressWrap}`}>
-          <motion.div className={styles.progress} style={{ scaleX: scrollYProgress }} />
+            <li className={styles.end}>
+              <p>Your turn to keep the secret.</p>
+              <Button href={CONTACT.bookUrl}>{CONTACT.bookLabel}</Button>
+            </li>
+          </m.ul>
         </div>
+
+        {!reduce && (
+          <div className={`container ${styles.progressWrap}`} aria-hidden="true">
+            <m.div className={styles.progress} style={{ scaleX: scrollYProgress }} />
+          </div>
+        )}
       </div>
     </section>
   );

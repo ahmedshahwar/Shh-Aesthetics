@@ -1,75 +1,49 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ABOUT, CONTACT } from '../../constants/content';
 import { IMAGES } from '../../constants/images';
 import { clipReveal, fadeUp, inView, staggerParent } from '../../lib/motion';
 import RevealLines from '../ui/RevealLines';
-import MagneticButton from '../ui/MagneticButton';
+import Button from '../ui/Button';
 import SmartImage from '../ui/SmartImage';
 import styles from './About.module.css';
 
 export default function About() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const mainY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-  const detailY = useTransform(scrollYProgress, [0, 1], ['40%', '-30%']);
-  const stickerRotate = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-
   return (
-    <section id="about" ref={ref} className={`sheet theme-ivory ${styles.section}`}>
+    <section id="about" className={`sheet theme-ivory ${styles.section}`} aria-labelledby="about-title">
       <div className={`container ${styles.grid}`}>
-        <motion.div className={styles.visual} initial="hidden" whileInView="visible" viewport={inView}>
-          <motion.div className={styles.main} variants={clipReveal} data-cursor="Hi">
-            <motion.div className={styles.mainInner} style={{ y: mainY }}>
-              <SmartImage src={IMAGES.aboutMain} alt="Kelly, licensed nurse practitioner" className={styles.fill} />
-            </motion.div>
-          </motion.div>
-
-          <motion.div className={styles.detail} style={{ y: detailY }}>
-            <SmartImage src={IMAGES.aboutDetail} alt="Treatment detail" className={styles.fill} />
-          </motion.div>
-
-          <motion.div className={styles.sticker} style={{ rotate: stickerRotate }}>
-            <span>Kelly's rule</span>
-            If you can tell,
-            <br />
-            it's too much.
-          </motion.div>
-        </motion.div>
+        <m.div className={styles.visual} initial="hidden" whileInView="visible" viewport={inView}>
+          <m.div className={styles.main} variants={clipReveal}>
+            <SmartImage src={IMAGES.aboutMain} alt="Kelly, licensed nurse practitioner and founder of Shh Aesthetics" className={styles.fill} />
+          </m.div>
+          <m.div className={styles.detail} variants={fadeUp} custom={0.4}>
+            <SmartImage src={IMAGES.aboutDetail} alt="Close-up of a treatment in progress" className={styles.fill} />
+          </m.div>
+        </m.div>
 
         <div className={styles.copy}>
-          <p className="eyebrow"><span>(04)</span> Meet Kelly</p>
-          <RevealLines
-            className={styles.heading}
-            lines={['The NP with', <em key="e" className="accent-dark">impeccable</em>, <em key="f" className="accent-dark">restraint.</em>]}
-          />
+          <RevealLines id="about-title" className={`heading ${styles.heading}`} lines={['Meet Kelly, the NP with impeccable restraint.']} />
 
-          <motion.div variants={staggerParent(0.15)} initial="hidden" whileInView="visible" viewport={inView}>
+          <m.div variants={staggerParent(0.12)} initial="hidden" whileInView="visible" viewport={inView}>
             {ABOUT.paragraphs.map((p) => (
-              <motion.p key={p.slice(0, 16)} className={styles.para} variants={fadeUp}>{p}</motion.p>
+              <m.p key={p.slice(0, 16)} className={styles.para} variants={fadeUp}>{p}</m.p>
             ))}
-          </motion.div>
+            <m.blockquote className={styles.rule} variants={fadeUp}>
+              <p>{ABOUT.rule}</p>
+              <cite>Kelly's rule</cite>
+            </m.blockquote>
+          </m.div>
 
-          <motion.dl
-            className={styles.creds}
-            variants={staggerParent(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={inView}
-          >
+          <dl className={styles.creds}>
             {ABOUT.credentials.map((c) => (
-              <motion.div key={c.label} className={styles.cred} variants={fadeUp}>
+              <div key={c.label} className={styles.cred}>
                 <dt>{c.label}</dt>
                 <dd>{c.value}</dd>
-              </motion.div>
+              </div>
             ))}
-          </motion.dl>
+          </dl>
 
-          <div className={styles.sign}>
-            <span className={styles.signature}>Kelly</span>
-            <MagneticButton href={CONTACT.bookUrl} variant="outlineDark">
-              Meet her in person
-            </MagneticButton>
+          <div className={styles.cta}>
+            <Button href={CONTACT.bookUrl} variant="outlineDark">{CONTACT.bookLabel}</Button>
           </div>
         </div>
       </div>

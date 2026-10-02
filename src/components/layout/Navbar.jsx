@@ -1,116 +1,133 @@
-import { useState } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { AnimatePresence, m, useMotionValueEvent, useScroll } from 'framer-motion';
 import { BRAND, CONTACT, NAV_LINKS } from '../../constants/content';
 import { setScrollLocked } from '../../lib/smoothScroll';
-import { useSiteNav } from '../../hooks/useSiteNav';
 import { EASE, EASE_IN_OUT } from '../../lib/motion';
-import MagneticButton from '../ui/MagneticButton';
+import Button from '../ui/Button';
+import SiteLink from '../ui/SiteLink';
 import styles from './Navbar.module.css';
 
-export default function Navbar({ ready }) {
+export default function Navbar() {
   const { scrollY } = useScroll();
+  const { pathname } = useLocation();
   const [hidden, setHidden] = useState(false);
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const burgerRef = useRef(null);
+  const menuRef = useRef(null);
 
-  // Smart header: tucks away on the way down, returns on the way up.
+  // Tucks away on the way down, returns on the way up.
   useMotionValueEvent(scrollY, 'change', (y) => {
     const prev = scrollY.getPrevious() ?? 0;
     setSolid(y > 40);
     setHidden(y > prev && y > 400 && !open);
   });
 
-  const toggle = (next = !open) => {
+  const setMenu = (next) => {
     setOpen(next);
     setScrollLocked(next);
   };
 
-  const siteNav = useSiteNav();
-  const go = (href) => {
-    toggle(false);
-    // wait for the overlay to start closing before moving
-    setTimeout(() => siteNav(href), open ? 350 : 0);
-  };
+  useEffect(() => {
+    if (!open) return;
+    menuRef.current?.querySelector('a')?.focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setMenu(false);
+        burgerRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  const isActive = (href) => href === pathname;
 
   return (
     <>
-      <motion.header
-        className={`${styles.header} ${solid ? styles.solid : ''}`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: ready && !hidden ? 0 : -100, opacity: ready ? 1 : 0 }}
-        transition={{ duration: 0.8, ease: EASE, delay: ready && !solid ? 0.9 : 0 }}
+      <m.header
+        className={`${styles.header} ${solid || open ? styles.solid : ''}`}
+        initial={false}
+        animate={{ y: hidden ? '-100%' : '0%' }}
+        transition={{ duration: 0.4, ease: EASE }}
       >
         <div className={styles.bar}>
-          <button className={styles.logo} onClick={() => go('/')} aria-label={`${BRAND.name}, back to top`}>
+          <SiteLink href="/" className={styles.logo} onClick={() => setMenu(false)} aria-label="Shh Aesthetics home">
             {BRAND.name}
-          </button>
+          </SiteLink>
 
           <nav className={styles.links} aria-label="Primary">
-            {NAV_LINKS.map((l, i) => (
-              <button key={l.href} className={styles.link} onClick={() => go(l.href)}>
-                <sup>0{i + 1}</sup>
-                <span className={styles.linkText} data-text={l.label}>{l.label}</span>
-              </button>
+            {NAV_LINKS.map((l) => (
+              <SiteLink
+                key={l.href}
+                href={l.href}
+                className={styles.link}
+                aria-current={isActive(l.href) ? 'page' : undefined}
+              >
+                {l.label}
+              </SiteLink>
             ))}
           </nav>
 
           <div className={styles.right}>
-            <MagneticButton href={CONTACT.bookUrl} className={styles.book} strength={0.25}>
-              Book a consult
-            </MagneticButton>
+            <Button href={CONTACT.bookUrl} className={styles.book}>
+              {CONTACT.bookLabel}
+            </Button>
 
             <button
+              ref={burgerRef}
+              type="button"
               className={styles.burger}
-              onClick={() => toggle()}
+              onClick={() => setMenu(!open)}
               aria-expanded={open}
-              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-controls="mobile-menu"
             >
               <span className={styles.burgerText}>{open ? 'Close' : 'Menu'}</span>
-              <span className={`${styles.burgerIcon} ${open ? styles.burgerOpen : ''}`}>
+              <span className={`${styles.burgerIcon} ${open ? styles.burgerOpen : ''}`} aria-hidden="true">
                 <i /><i />
               </span>
             </button>
           </div>
         </div>
-      </motion.header>
+      </m.header>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
+            id="mobile-menu"
+            ref={menuRef}
             className={styles.overlay}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
             initial={{ clipPath: 'inset(0 0 100% 0)' }}
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.9, ease: EASE_IN_OUT }}
+            transition={{ duration: 0.7, ease: EASE_IN_OUT }}
           >
             <nav className={styles.overlayNav} aria-label="Mobile">
               {[{ label: 'Home', href: '/' }, ...NAV_LINKS].map((l, i) => (
                 <div key={l.href} className={styles.overlayMask}>
-                  <motion.button
-                    className={styles.overlayLink}
-                    onClick={() => go(l.href)}
+                  <m.div
                     initial={{ y: '110%' }}
                     animate={{ y: 0 }}
                     exit={{ y: '110%' }}
-                    transition={{ duration: 0.8, delay: 0.25 + i * 0.07, ease: EASE }}
+                    transition={{ duration: 0.6, delay: 0.2 + i * 0.05, ease: EASE }}
                   >
-                    <span>0{i + 1}</span>
-                    {l.label}
-                  </motion.button>
+                    <SiteLink href={l.href} className={styles.overlayLink} onClick={() => setMenu(false)}>
+                      {l.label}
+                    </SiteLink>
+                  </m.div>
                 </div>
               ))}
             </nav>
-            <motion.div
-              className={styles.overlayFoot}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.7 } }}
-              exit={{ opacity: 0 }}
-            >
+            <div className={styles.overlayFoot}>
+              <Button href={CONTACT.bookUrl} onClick={() => setMenu(false)}>{CONTACT.bookLabel}</Button>
               <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
               <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-              <span>We come to you · {CONTACT.areasShort}</span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

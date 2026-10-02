@@ -1,49 +1,50 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { destroySmoothScroll, initSmoothScroll, setScrollLocked } from './lib/smoothScroll';
-import Preloader from './components/layout/Preloader';
-import Cursor from './components/layout/Cursor';
-import ScrollProgress from './components/layout/ScrollProgress';
+import { LazyMotion, MotionConfig } from 'framer-motion';
+import { destroySmoothScroll, initSmoothScroll } from './lib/smoothScroll';
 import ScrollManager from './components/layout/ScrollManager';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import CookieConsent from './components/layout/CookieConsent';
+import ChatWidget from './components/layout/ChatWidget';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+// Animation features load in a separate chunk, after the page is already usable.
+const loadMotion = () => import('./lib/motionFeatures').then((mod) => mod.default);
 
 export default function App() {
-  const [ready, setReady] = useState(false);
-
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
-    initSmoothScroll();
-    setScrollLocked(true);
+    const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 200));
+    idle(() => initSmoothScroll());
     return destroySmoothScroll;
   }, []);
 
-  const handleLoaded = useCallback(() => {
-    setScrollLocked(false);
-    setReady(true);
-  }, []);
-
   return (
-    <>
-      <Preloader onDone={handleLoaded} />
-      <Cursor />
-      <ScrollProgress />
-      <ScrollManager />
-      <Navbar ready={ready} />
+    <LazyMotion features={loadMotion} strict>
+      <MotionConfig reducedMotion="user">
+        <a href="#main" className="skip-link">Skip to content</a>
+        <ScrollManager />
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<HomePage ready={ready} />} />
-        <Route path="/contact" element={<ContactPage ready={ready} />} />
-        <Route path="/privacy" element={<PrivacyPage ready={ready} />} />
-        <Route path="/terms" element={<TermsPage ready={ready} />} />
-        <Route path="*" element={<HomePage ready={ready} />} />
-      </Routes>
+        <main id="main" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
 
-      <Footer />
-    </>
+        <Footer />
+        <CookieConsent />
+        <ChatWidget />
+      </MotionConfig>
+    </LazyMotion>
   );
 }

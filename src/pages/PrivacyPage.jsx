@@ -73,6 +73,26 @@ const SECTIONS = [
     ),
   },
   {
+    id: 'cookies',
+    title: 'Cookies',
+    content: (
+      <>
+        <p>
+          Cookies are small files stored in your browser. We use necessary cookies to run this
+          website and our online booking calendar, which is provided by our scheduling platform.
+          These are required for the site to work and cannot be switched off.
+        </p>
+        <p>
+          With your consent, we may also use analytics and marketing cookies to understand how
+          visitors use the site and to measure our advertising. You can accept or decline these
+          when you first visit, and change your choice at any time using the{' '}
+          <strong>Cookie settings</strong> link at the bottom of every page. Declining does not
+          affect your ability to use the site or book an appointment.
+        </p>
+      </>
+    ),
+  },
+  {
     id: 'data-security',
     title: 'Data security',
     content: (
@@ -129,17 +149,16 @@ const SECTIONS = [
   },
 ];
 
-export default function PrivacyPage({ ready }) {
+export default function PrivacyPage() {
   return (
     <LegalLayout
-      ready={ready}
       seoPage="privacy"
-      eyebrow="Privacy Policy"
-      titleLines={['Your secrets,', <em key="e" className="accent">kept private.</em>]}
+      name="Privacy policy"
+      title="Your secrets, kept private."
       intro={
         'SHH AESTHETICS AND WELLNESS LLC ("Shh Aesthetics," "we," "us," or "our") respects your privacy. This policy explains what information we collect through our website and text messaging program, how we use it, and the choices you have.'
       }
-      updated="September 16, 2026"
+      updated="October 2, 2026"
       sections={SECTIONS}
     />
   );

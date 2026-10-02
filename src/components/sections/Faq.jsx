@@ -1,68 +1,56 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { CONTACT, FAQS } from '../../constants/content';
-import { EASE, fadeUp, inView, staggerParent } from '../../lib/motion';
 import RevealLines from '../ui/RevealLines';
-import MagneticButton from '../ui/MagneticButton';
 import styles from './Faq.module.css';
 
 export default function Faq() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(FAQS[0].id);
 
   return (
-    <section id="faq" className={`sheet theme-ink ${styles.section}`}>
+    <section id="faq" className={`sheet theme-ink ${styles.section}`} aria-labelledby="faq-title">
       <div className={`container ${styles.grid}`}>
-        <aside className={styles.side}>
-          <p className="eyebrow"><span>(07)</span> FAQ</p>
-          <RevealLines
-            className={styles.heading}
-            lines={["Questions you're", <em key="e" className="accent">too polite</em>, 'to ask.']}
-          />
-          <div className={styles.note}>
-            <p>Still curious? Ask me in person. I'll bring the answers to your door.</p>
-            <MagneticButton href={CONTACT.bookUrl} variant="outline">Ask Kelly</MagneticButton>
-          </div>
-        </aside>
+        <div className={styles.side}>
+          <RevealLines id="faq-title" className={`heading ${styles.heading}`} lines={["Questions you're too polite to ask."]} />
+          <p className={styles.note}>
+            Something else on your mind? Call or text{' '}
+            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>, or ask me at your free consultation.
+          </p>
+        </div>
 
-        <motion.ul
-          className={styles.list}
-          variants={staggerParent(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={inView}
-        >
-          {FAQS.map((f, i) => {
-            const isOpen = open === i;
+        <ul className={styles.list}>
+          {FAQS.map((f) => {
+            const isOpen = open === f.id;
             return (
-              <motion.li key={f.q} className={`${styles.item} ${isOpen ? styles.open : ''}`} variants={fadeUp}>
-                <button
-                  className={styles.q}
-                  onClick={() => setOpen(isOpen ? -1 : i)}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-${i}`}
+              <li key={f.id} className={`${styles.item} ${isOpen ? styles.open : ''}`}>
+                <h3>
+                  <button
+                    type="button"
+                    id={`faq-q-${f.id}`}
+                    className={styles.q}
+                    onClick={() => setOpen(isOpen ? null : f.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-a-${f.id}`}
+                  >
+                    <span className={styles.qText}>{f.q}</span>
+                    <span className={styles.icon} aria-hidden="true" />
+                  </button>
+                </h3>
+                <div
+                  id={`faq-a-${f.id}`}
+                  className={styles.panel}
+                  data-open={isOpen}
+                  role="region"
+                  aria-labelledby={`faq-q-${f.id}`}
+                  inert={!isOpen}
                 >
-                  <span className={styles.num}>0{i + 1}</span>
-                  <span className={styles.qText}>{f.q}</span>
-                  <span className={styles.icon} aria-hidden="true" />
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`faq-${i}`}
-                      className={styles.a}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.6, ease: EASE }}
-                    >
-                      <p>{f.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.li>
+                  <div className={styles.a}>
+                    <p>{f.a}</p>
+                  </div>
+                </div>
+              </li>
             );
           })}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );

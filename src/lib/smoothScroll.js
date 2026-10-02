@@ -1,52 +1,43 @@
-import Lenis from 'lenis';
-
+/*
+ * Inertia smooth scrolling (Lenis) for mouse wheels and trackpads. It loads after the
+ * page is idle so it never delays the first paint, and it is skipped for visitors who
+ * ask for reduced motion. Touch scrolling stays native.
+ */
 let lenis = null;
+let destroyed = false;
 
-export function initSmoothScroll() {
-  if (lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return lenis;
-
-  lenis = new Lenis({ duration: 1.25, easing: (t) => 1 - Math.pow(1 - t, 4) });
-
-  const raf = (time) => {
-    lenis?.raf(time);
-    requestAnimationFrame(raf);
-  };
-  requestAnimationFrame(raf);
-  return lenis;
+export async function initSmoothScroll() {
+  destroyed = false;
+  if (lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const { default: Lenis } = await import('lenis');
+  if (destroyed || lenis) return;
+  lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.9, autoRaf: true });
 }
 
 export function destroySmoothScroll() {
+  destroyed = true;
   lenis?.destroy();
   lenis = null;
 }
 
 export function setScrollLocked(locked) {
-  if (lenis) {
-    if (locked) lenis.stop();
-    else lenis.start();
-  }
+  if (locked) lenis?.stop();
+  else lenis?.start();
   document.documentElement.style.overflow = locked ? 'hidden' : '';
 }
 
-export function scrollToTarget(target) {
-  if (target === '#top' || target === 0) {
-    if (lenis) lenis.scrollTo(0, { duration: 1.6 });
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
+export function scrollToTarget(target, instant = false) {
+  const el = target === '#top' || target === 0 ? 0 : typeof target === 'string' ? document.querySelector(target) : target;
+  if (el === null) return;
+  if (lenis) {
+    lenis.scrollTo(el, { immediate: instant, duration: 1.4, force: true });
     return;
   }
-  const el = typeof target === 'string' ? document.querySelector(target) : target;
-  if (!el) return;
-  if (lenis) {
-    lenis.resize(); // page height may have just changed (route switch)
-    lenis.scrollTo(el, { duration: 1.6, force: true });
-  }
-  else el.scrollIntoView({ behavior: 'smooth' });
+  const behavior = instant ? 'instant' : 'smooth';
+  if (el === 0) window.scrollTo({ top: 0, behavior });
+  else el.scrollIntoView({ behavior });
 }
 
 export function scrollToTop(immediate = false) {
-  if (lenis) {
-    lenis.resize();
-    lenis.scrollTo(0, { immediate, force: true });
-  }
-  else window.scrollTo({ top: 0, behavior: immediate ? 'instant' : 'smooth' });
+  scrollToTarget(0, immediate);
 }

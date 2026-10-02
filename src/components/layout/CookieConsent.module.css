@@ -1,0 +1,54 @@
+/* Slim bar, bottom-left, kept clear of the chat bubble in the bottom-right corner. */
+.panel {
+  position: fixed;
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: var(--z-consent);
+  width: min(54rem, calc(100vw - 1.5rem - 5.5rem));
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 1rem 1rem 1.4rem;
+  border-radius: 6px;
+  background: var(--ink-2);
+  color: var(--ivory);
+  border: 1px solid var(--line-dark);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.text {
+  grid-column: 1;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--stone);
+}
+.text a {
+  color: var(--ivory);
+  background: linear-gradient(var(--champagne), var(--champagne)) 0 100% / 100% 1px no-repeat;
+}
+
+.actions {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+@media (max-width: 760px) {
+  .panel {
+    width: calc(100vw - 1.5rem);
+    grid-template-columns: 1fr;
+    padding: 1.1rem;
+  }
+  .actions { grid-column: 1; grid-row: auto; margin-top: 0.5rem; }
+  .actions > * { flex: 1; }
+}

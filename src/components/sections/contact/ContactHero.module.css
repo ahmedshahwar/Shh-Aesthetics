@@ -32,128 +32,66 @@
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
-  padding-top: 5rem;
+  padding-top: 4.5rem;
 }
 
-.eyebrow { color: var(--champagne); margin-bottom: 2rem; }
+.crumbs { margin-bottom: 1.75rem; }
+
+.kicker { color: var(--champagne); margin-bottom: 1rem; }
 
 .title {
   font-family: var(--font-display);
-  font-size: var(--fs-hero);
-  font-weight: 300;
-  line-height: 0.98;
+  font-size: var(--fs-display);
+  font-weight: 400;
+  line-height: 1.02;
   letter-spacing: -0.015em;
 }
-.title em { font-weight: 300; }
 
 .intro {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   max-width: 32rem;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
   color: var(--stone);
 }
 
-.ctas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.25rem 2rem;
-  margin-top: 2.5rem;
-}
+.chat { margin-top: 0.75rem; font-size: var(--fs-small); color: var(--stone); }
 
-.chat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-size: var(--fs-label);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--stone);
-}
-.pulse {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #7fbf8f;
-}
-.pulse::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: inherit;
-  animation: ping 1.8s var(--ease) infinite;
-}
-@keyframes ping { to { transform: scale(3); opacity: 0; } }
+.ctas { margin-top: 2.25rem; }
 
-/* ── Contact rows ── */
 .rows { border-top: 1px solid var(--line-dark); }
 
 .row {
-  position: relative;
   display: grid;
-  grid-template-columns: 7rem 1fr auto;
-  align-items: center;
+  grid-template-columns: 8.5rem 1fr;
+  align-items: baseline;
   gap: 1rem;
-  padding: 1.6rem 0;
+  padding: 1.35rem 0;
   border-bottom: 1px solid var(--line-dark);
-  overflow: hidden;
-  isolation: isolate;
 }
-
-/* Hover: a champagne wash sweeps in, text slides right */
-a.row::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(201, 178, 140, 0.12), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s var(--ease);
-}
-a.row:hover::before { transform: scaleX(1); }
 
 .rowLabel {
   font-size: var(--fs-label);
   font-weight: 600;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
   color: var(--champagne);
 }
 
 .rowValue {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: 500;
   line-height: 1.25;
   color: var(--ivory);
-  transition: transform 0.5s var(--ease), color 0.5s var(--ease);
   overflow-wrap: anywhere;
 }
-a.row:hover .rowValue { transform: translateX(10px); color: var(--champagne); font-style: italic; }
-
-.rowArrow {
-  font-size: 1.1rem;
-  color: var(--champagne);
-  transform: translateX(-12px);
-  opacity: 0;
-  transition: transform 0.5s var(--ease), opacity 0.5s var(--ease);
+.rowValue a {
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 178, 140, 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
 }
-a.row:hover .rowArrow { transform: translateX(0); opacity: 1; }
-
-.foot {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 1.8rem;
-  display: flex;
-  font-size: var(--fs-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--taupe);
-}
-.footRight { margin-left: auto; }
+.rowValue a:hover { color: var(--champagne); text-decoration-color: var(--champagne); }
 
 .dim {
   position: absolute;
@@ -164,10 +102,11 @@ a.row:hover .rowArrow { transform: translateX(0); opacity: 1; }
 
 @media (max-width: 900px) {
   .hero { position: relative; height: auto; min-height: 0; }
-  .stage { padding: 7rem 0 5rem; }
+  .stage { padding: 6rem 0 5rem; }
   .grid { grid-template-columns: 1fr; padding-top: 0; }
-  .row { grid-template-columns: 1fr auto; padding: 1.2rem 0; }
-  .rowLabel { grid-column: 1 / -1; }
-  .rowArrow { opacity: 1; transform: none; }
-  .foot { display: none; }
+  .row { grid-template-columns: 1fr; gap: 0.2rem; padding: 1.1rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { position: relative; }
 }

@@ -1,43 +1,31 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { EASE, inView } from '../../lib/motion';
 import styles from './RevealLines.module.css';
 
-/**
- * Each line slides up from behind a mask, one after another.
- * Pass `play` to control timing manually (e.g. after the preloader);
- * leave it undefined to trigger when scrolled into view.
- */
-export default function RevealLines({
-  lines,
-  as: Tag = 'h2',
-  className = '',
-  delay = 0,
-  stagger = 0.12,
-  play,
-}) {
-  const MotionTag = motion[Tag] ?? motion.h2;
-  const trigger =
-    play === undefined
-      ? { initial: 'hidden', whileInView: 'visible', viewport: inView }
-      : { initial: 'hidden', animate: play ? 'visible' : 'hidden' };
+/** A section heading that slides up from behind a mask when scrolled into view. */
+export default function RevealLines({ lines, as: Tag = 'h2', className = '', ...rest }) {
+  const MotionTag = m[Tag] ?? m.h2;
 
   return (
     <MotionTag
       className={className}
-      {...trigger}
-      variants={{ visible: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={inView}
+      variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+      {...rest}
     >
       {lines.map((line, i) => (
         <span key={i} className={styles.mask}>
-          <motion.span
+          <m.span
             className={styles.line}
             variants={{
-              hidden: { y: '110%', rotate: 2 },
-              visible: { y: '0%', rotate: 0, transition: { duration: 1.1, ease: EASE } },
+              hidden: { y: '105%' },
+              visible: { y: '0%', transition: { duration: 0.8, ease: EASE } },
             }}
           >
             {line}
-          </motion.span>
+          </m.span>
         </span>
       ))}
     </MotionTag>

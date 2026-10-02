@@ -10,19 +10,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 1s var(--ease), transform 1.6s var(--ease);
 }
-.frame[data-state='loaded'] .img { opacity: 1; transform: scale(1); }
 
 .fallback {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
+  padding: 1.5rem;
+  text-align: center;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(2rem, 6vw, 4rem);
-  color: rgba(201, 178, 140, 0.35);
+  font-size: 1.2rem;
+  line-height: 1.35;
+  color: var(--champagne-lt);
 }

@@ -7,7 +7,7 @@
  * Note: two of them come from plus.unsplash.com, which is Unsplash+
  * (their paid library). Check your licence before going live.
  */
-import heroLogo from '../assets/images/hero-logo.png';
+import heroLogo from '../assets/images/hero-logo.jpg';
 
 const unsplash = (id, w = 1400) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
@@ -19,22 +19,22 @@ const unsplashPlus = (id, w = 1400) =>
 export const IMAGES = {
   hero: heroLogo,
 
-  /* ── Menu cards ── */
+  /* Menu cards */
   injectables: unsplash('1654374504608-67c4cfe65fca'),
   skincare: unsplash('1570172619644-dfd03ed5d881'),
   wellness: unsplash('1630595271375-5073a6c0638b'),
 
-  /* ── Meet Kelly. PLACEHOLDER: replace with Kelly's own photo. ── */
+  /* Meet Kelly. PLACEHOLDER: replace with Kelly's own photo. */
   aboutMain: unsplash('1706565029539-d09af5896340', 1200),
   aboutDetail: unsplash('1706554597282-3cc8f3dfeca3', 700),
 
   gallery: [
-    { src: unsplash('1761718209835-c8586b7dcac0', 1000), caption: 'Prep, glow, repeat' },
-    { src: unsplash('1584457361626-06effef61a7c', 1000), caption: 'Lips, but make it subtle' },
+    { src: unsplash('1761718209835-c8586b7dcac0', 1000), caption: 'Skin prep comes first' },
+    { src: unsplash('1584457361626-06effef61a7c', 1000), caption: 'Lip enhancement, kept subtle' },
     { src: unsplash('1678428901378-fdb0db557de5', 1000), caption: 'Still unmistakably you' },
-    { src: unsplashPlus('1719617671521-848fd017eca0', 1000), caption: 'Quiet confidence' },
-    { src: unsplash('1576671081837-49000212a370', 1000), caption: 'Measured, labelled, exact' },
-    { src: unsplash('1787651343496-35b3666dd7d2', 1000), caption: 'Your hour. No phones.' },
+    { src: unsplashPlus('1719617671521-848fd017eca0', 1000), caption: 'Confidence without the reveal' },
+    { src: unsplash('1576671081837-49000212a370', 1000), caption: 'Measured and labeled, every time' },
+    { src: unsplash('1787651343496-35b3666dd7d2', 1000), caption: 'An unhurried hour, at home' },
   ],
 
   contact: unsplashPlus('1677474827617-6a7269f97574', 1400),

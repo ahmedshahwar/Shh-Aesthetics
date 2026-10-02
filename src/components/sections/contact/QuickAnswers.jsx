@@ -1,43 +1,34 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { CONTACT_PAGE, FAQS } from '../../../constants/content';
 import { fadeUp, inView, staggerParent } from '../../../lib/motion';
 import RevealLines from '../../ui/RevealLines';
-import MagneticButton from '../../ui/MagneticButton';
+import Button from '../../ui/Button';
 import styles from './QuickAnswers.module.css';
 
-const ANSWERS = CONTACT_PAGE.quickAnswers
-  .map((q) => FAQS.find((f) => f.q === q))
-  .filter(Boolean);
+const ANSWERS = CONTACT_PAGE.quickAnswers.map((id) => FAQS.find((f) => f.id === id)).filter(Boolean);
 
 export default function QuickAnswers() {
   return (
-    <section className={`sheet ${styles.section}`}>
+    <section className={`sheet theme-champagne ${styles.section}`} aria-labelledby="quick-title">
       <div className={`container ${styles.head}`}>
-        <div>
-          <p className="eyebrow"><span>(02)</span> Quick answers</p>
-          <RevealLines
-            className={styles.heading}
-            lines={['Before you', <em key="e">hit book.</em>]}
-          />
-        </div>
-        <MagneticButton href="/#faq" variant="outlineDark">All the FAQs</MagneticButton>
+        <RevealLines id="quick-title" className="heading" lines={['Before you book.']} />
+        <Button href="/#faq" variant="outlineDark">Read all FAQs</Button>
       </div>
 
-      <motion.ul
+      <m.ul
         className={`container ${styles.grid}`}
-        variants={staggerParent(0.1)}
+        variants={staggerParent(0.08)}
         initial="hidden"
         whileInView="visible"
         viewport={inView}
       >
-        {ANSWERS.map((f, i) => (
-          <motion.li key={f.q} className={styles.card} variants={fadeUp}>
-            <span className={styles.num}>0{i + 1}</span>
+        {ANSWERS.map((f) => (
+          <m.li key={f.id} className={styles.card} variants={fadeUp}>
             <h3>{f.q}</h3>
             <p>{f.a}</p>
-          </motion.li>
+          </m.li>
         ))}
-      </motion.ul>
+      </m.ul>
     </section>
   );
 }

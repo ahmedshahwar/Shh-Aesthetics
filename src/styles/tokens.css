@@ -1,49 +1,95 @@
-/* ══════════════════════════════════════
-   SHH AESTHETICS · Design Tokens
-   ══════════════════════════════════════ */
+/* Self-hosted, Latin subset only. The three faces used above the fold are preloaded in index.html. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/cormorant-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/manrope-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/manrope-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/manrope-600.woff2') format('woff2');
+}
 
 :root {
-  /* ── Core palette ── */
+  /* Palette */
   --ink:          #0D0D0D;
   --ink-2:        #141312;
   --ink-3:        #1C1A18;
   --ivory:        #F4EFE8;
   --ivory-2:      #EAE2D6;
   --stone:        #B8AEA3;
-  --taupe:        #6E645A;
+  --taupe:        #635A51;
   --champagne:    #C9B28C;
   --champagne-lt: #DCC9A7;
   --champagne-dk: #9E8660;
   --burgundy:     #4A2028;
   --burgundy-lt:  #6A3240;
 
-  --line-dark:  rgba(201, 178, 140, 0.16);
-  --line-light: rgba(13, 13, 13, 0.12);
+  --line-dark:  rgba(201, 178, 140, 0.18);
+  --line-light: rgba(13, 13, 13, 0.14);
 
-  /* ── Typography ── */
-  --font-display: 'Cormorant Garamond', 'Georgia', serif;
-  --font-body:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Type */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --fs-hero:      clamp(4rem, 7.4vw, 5.625rem);   /* 64 to 90px  */
-  --fs-section:   clamp(2.5rem, 4.6vw, 3.5rem);   /* 40 to 56px  */
-  --fs-statement: clamp(1.75rem, 3.4vw, 3rem);    /* editorial paragraph */
-  --fs-title:     clamp(1.75rem, 2.6vw, 2.5rem);  /* card titles */
-  --fs-body:      clamp(1rem, 1.1vw, 1.125rem);   /* 16 to 18px  */
-  --fs-nav:       clamp(0.6875rem, 0.85vw, 0.8125rem); /* 11 to 13px */
-  --fs-button:    0.71875rem;                      /* 11.5px   */
-  --fs-label:     0.6875rem;                       /* 11px     */
+  --fs-display:   clamp(3.1rem, 6.2vw, 5.25rem);
+  --fs-section:   clamp(2.2rem, 4vw, 3.4rem);
+  --fs-title:     clamp(1.6rem, 2.4vw, 2.2rem);
+  --fs-lead:      clamp(1.15rem, 1.5vw, 1.35rem);
+  --fs-body:      clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --fs-small:     0.9375rem;
+  --fs-label:     0.875rem;
+  --fs-button:    0.9375rem;
 
-  --track-logo:  0.32em;
-  --track-label: 0.22em;
-  --track-nav:   0.16em;
+  --track-logo:  0.24em;
 
-  /* ── Space ── */
+  /* Space */
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
-  --section-y: clamp(6rem, 14vh, 11rem);
-  --max-w: 1320px;
-  --radius-section: clamp(1.5rem, 3vw, 2.5rem);
+  --section-y: clamp(5.5rem, 13vh, 10rem);
+  --max-w: 1280px;
+  --radius-section: clamp(1.25rem, 2.6vw, 2.25rem);
+  --radius-ui: 10px;
 
-  /* ── Motion ── */
+  /* Layers */
+  --z-menu:    900;
+  --z-header:  1000;
+  --z-consent: 1100;
+  --z-skip:    1200;
+  --z-grain:   1300;
+
+  /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
 }

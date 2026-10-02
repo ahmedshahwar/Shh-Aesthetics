@@ -91,14 +91,36 @@ const SECTIONS = [
     ),
   },
   {
+    id: 'medical-disclaimer',
+    title: 'Medical disclaimer',
+    content: (
+      <>
+        <p>
+          Content on this website, including treatment descriptions, answers to common questions,
+          and our social media, is for general information only. It is not medical advice and does
+          not create a provider-patient relationship.
+        </p>
+        <p>
+          Every treatment requires a consultation and review of your health history with our
+          licensed provider, who decides whether a treatment is appropriate for you. Not every
+          treatment is suitable for everyone. Results, duration and recovery vary from person to
+          person, and no specific result is guaranteed. Photos on this website are for illustration
+          and are not before-and-after results.
+        </p>
+        <p>
+          If you have a medical emergency, call 911. If you experience an unexpected reaction after
+          a treatment, contact us right away and seek medical care if needed.
+        </p>
+      </>
+    ),
+  },
+  {
     id: 'website-use',
     title: 'Use of our website',
     content: (
       <p>
-        Content on this website is for general information only and is not medical advice.
-        Treatment results vary. A consultation is required before any treatment, and services are
-        provided at the discretion of our licensed provider. You agree not to use this website for
-        any unlawful purpose.
+        Services are provided at the discretion of our licensed provider. You agree not to use this
+        website for any unlawful purpose.
       </p>
     ),
   },
@@ -144,17 +166,16 @@ const SECTIONS = [
   },
 ];
 
-export default function TermsPage({ ready }) {
+export default function TermsPage() {
   return (
     <LegalLayout
-      ready={ready}
       seoPage="terms"
-      eyebrow="Terms & Conditions"
-      titleLines={['The fine print,', <em key="e" className="accent">in plain English.</em>]}
+      name="Terms and conditions"
+      title="The fine print, in plain English."
       intro={
         'These Terms & Conditions apply to your use of the website and text messaging program operated by SHH AESTHETICS AND WELLNESS LLC ("Shh Aesthetics," "we," "us," or "our"). By using our website or opting in to receive text messages, you agree to these terms.'
       }
-      updated="September 16, 2026"
+      updated="October 2, 2026"
       sections={SECTIONS}
     />
   );

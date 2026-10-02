@@ -1,13 +1,7 @@
-# ─────────────────────────────────────────────
-# Shh Aesthetics & Wellness
-# Files Git should never track.
-# ─────────────────────────────────────────────
-
-# Dependencies (reinstalled with `npm install`, never committed)
+# Dependencies
 node_modules/
 .pnp
 .pnp.js
-jspm_packages/
 
 # Build output (Vercel rebuilds this on every deploy)
 dist/
@@ -15,8 +9,7 @@ dist-ssr/
 build/
 *.local
 
-# Secrets and environment variables.
-# NEVER commit these: API keys, tokens, GHL credentials.
+# Secrets and environment variables: API keys, tokens, GHL credentials
 .env
 .env.*
 !.env.example
@@ -28,7 +21,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Caches
@@ -37,39 +29,33 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .tmp/
 .vite/
 .eslintcache
-.stylelintcache
 *.tsbuildinfo
+lighthouse-*.html
+lighthouse-*.json
 
-# Hosting and tooling
+# Hosting
 .vercel/
 .netlify/
-.firebase/
-.ngrok/
-*.ngrok.yml
 
-# Editors and IDEs
+# Local editor and assistant tooling (kept out of the repository)
 .vscode/*
 !.vscode/extensions.json
-!.vscode/settings.json
 .idea/
+.claude/
+.agents/
+.cursor/
+skills-lock.json
+CLAUDE.md
+AGENTS.md
 *.swp
-*.swo
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
 
-# Operating system junk
+# Operating system files
 .DS_Store
-.DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# Archives and scratch files that tend to pile up in a project folder
+# Archives and scratch files
 *.zip
 *.tar.gz
 *.rar

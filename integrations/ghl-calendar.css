@@ -10,7 +10,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@400;500;600&display=swap');
 
-/* ── 1. Colour tokens (GHL reads these everywhere) ── */
+/* 1. Colour tokens (GHL reads these everywhere) */
 html:root,
 :root {
   --appointment_widgets-primary-color: #4A2028 !important;        /* burgundy */
@@ -44,7 +44,7 @@ html:root,
   --appointment_widgets-blur-color: #FFFDF9B3 !important;
 }
 
-/* ── 2. Base ── */
+/* 2. Base */
 html,
 body,
 #appointment_widgets--revamp {
@@ -70,7 +70,7 @@ body,
   border: none !important;
 }
 
-/* ── 3. Left info panel (service name, duration, date) ── */
+/* 3. Left info panel (service name, duration, date) */
 .appointment_widgets--revamp--info-container {
   border-color: var(--shh-line) !important;
 }
@@ -96,7 +96,7 @@ body,
   stroke: var(--shh-burgundy) !important;
 }
 
-/* ── 4. "Select Date & Time" heading ── */
+/* 4. "Select Date & Time" heading */
 #appointment_widgets--revamp .label-select-date {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 1.75rem !important;
@@ -107,7 +107,7 @@ body,
   margin-bottom: 1rem !important;
 }
 
-/* ── 5. Month header ── */
+/* 5. Month header */
 .vdpHeader {
   background: transparent !important;
   padding-bottom: 0.75rem !important;
@@ -157,7 +157,7 @@ body,
   opacity: 0.3 !important;
 }
 
-/* ── 6. Day grid ── */
+/* 6. Day grid */
 .vdpHeadCellContent {
   font-size: 0.65rem !important;
   font-weight: 600 !important;
@@ -215,7 +215,7 @@ body,
   transform: translateX(-50%);
 }
 
-/* ── 7. Time zone picker ── */
+/* 7. Time zone picker */
 .widgets-timezone-picker .timezone-label {
   font-size: 0.65rem !important;
   font-weight: 600 !important;
@@ -255,7 +255,7 @@ body,
   color: var(--shh-ink) !important;
 }
 
-/* ── 8. Time slots: pills ── */
+/* 8. Time slots: pills */
 .widgets-time-slots {
   gap: 0.5rem !important;
   scrollbar-width: thin;
@@ -303,7 +303,7 @@ body,
   text-transform: uppercase !important;
 }
 
-/* ── 9. Step 2: details form ── */
+/* 9. Step 2: details form */
 #appointment_widgets--revamp label,
 #appointment_widgets--revamp .label-alignment,
 #appointment_widgets--revamp .form-builder--item label {
@@ -351,7 +351,7 @@ body,
   accent-color: var(--shh-burgundy);
 }
 
-/* ── 10. Primary buttons (Next, Book, Schedule Meeting) ── */
+/* 10. Primary buttons (Next, Book, Schedule Meeting) */
 #appointment_widgets--revamp button[type='submit'],
 #appointment_widgets--revamp .btn-schedule,
 #appointment_widgets--revamp .btn-primary,
@@ -389,7 +389,7 @@ body,
   border-radius: 999px !important;
 }
 
-/* ── 11. Confirmation screen ── */
+/* 11. Confirmation screen */
 #appointment_widgets--revamp h1,
 #appointment_widgets--revamp h2,
 #appointment_widgets--revamp h3 {
@@ -398,6 +398,6 @@ body,
   color: var(--shh-ink) !important;
 }
 
-/* ── 12. Links and selection ── */
+/* 12. Links and selection */
 #appointment_widgets--revamp a { color: var(--shh-burgundy) !important; }
 ::selection { background: var(--shh-champagne); color: var(--shh-ink); }

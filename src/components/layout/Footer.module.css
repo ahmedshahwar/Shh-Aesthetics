@@ -10,13 +10,13 @@
   display: grid;
   grid-template-columns: 1.1fr 1.4fr;
   gap: 4rem;
-  padding-bottom: 5rem;
+  padding-bottom: 4rem;
 }
 
 .sign {
   font-family: var(--font-display);
   font-size: var(--fs-title);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   max-width: 18ch;
 }
@@ -29,18 +29,16 @@
 }
 
 .col { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; }
-.col h4 {
+.col h2 {
   font-size: var(--fs-label);
   font-weight: 600;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
   color: var(--champagne);
   margin-bottom: 0.5rem;
 }
 
 .link {
   position: relative;
-  font-size: 0.9rem;
+  font-size: var(--fs-small);
   color: var(--stone);
   transition: color 0.3s var(--ease);
   text-align: left;
@@ -69,7 +67,7 @@
 .wordmark text {
   font-family: var(--font-display);
   font-size: 150px;
-  font-weight: 300;
+  font-weight: 400;
   fill: var(--champagne);
 }
 
@@ -82,21 +80,26 @@
   padding-bottom: 2rem;
   margin-top: 1.5rem;
   border-top: 1px solid var(--line-dark);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  color: var(--taupe);
+  font-size: var(--fs-label);
+  color: var(--stone);
 }
 
+.disclaimer { padding-bottom: 3rem; }
+.disclaimer p {
+  max-width: 60rem;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--stone);
+}
+.disclaimer strong { color: var(--ivory); font-weight: 600; }
+
 .toTop {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: var(--fs-label);
+  font-weight: 500;
   color: var(--ivory);
   transition: color 0.3s var(--ease);
 }
-.toTop span { display: inline-block; transition: transform 0.4s var(--ease); }
 .toTop:hover { color: var(--champagne); }
-.toTop:hover span { transform: translateY(-4px); }
 
 @media (max-width: 900px) {
   .top { grid-template-columns: 1fr; gap: 3rem; }

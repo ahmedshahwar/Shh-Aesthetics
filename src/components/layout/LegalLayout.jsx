@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { EASE, fadeUp, inView } from '../../lib/motion';
-import { scrollToTarget } from '../../lib/smoothScroll';
-import RevealLines from '../ui/RevealLines';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import SiteLink from '../ui/SiteLink';
+import Breadcrumbs from '../seo/Breadcrumbs';
 import Seo from '../seo/Seo';
 import styles from './LegalLayout.module.css';
 
@@ -13,13 +12,14 @@ import styles from './LegalLayout.module.css';
  *
  * sections: [{ id, title, content: <JSX> }]
  */
-export default function LegalLayout({ ready, seoPage, eyebrow, titleLines, intro, updated, sections }) {
+export default function LegalLayout({ seoPage, name, title, intro, updated, sections }) {
   const heroRef = useRef(null);
+  const reduce = useReducedMotion();
   const [active, setActive] = useState(sections[0]?.id);
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const dim = useTransform(scrollYProgress, [0, 1], [0, 0.75]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const dim = useTransform(scrollYProgress, [0, 1], [0, 0.7]);
 
   // Highlight the section currently in the upper part of the screen
   useEffect(() => {
@@ -32,31 +32,22 @@ export default function LegalLayout({ ready, seoPage, eyebrow, titleLines, intro
     return () => io.disconnect();
   }, [sections]);
 
-  const fade = (delay) => ({
-    initial: { opacity: 0, y: 24 },
-    animate: ready ? { opacity: 1, y: 0 } : {},
-    transition: { duration: 1, delay, ease: EASE },
-  });
-
   return (
-    <main>
+    <>
       <Seo page={seoPage} />
       <div>
         <section id="top" ref={heroRef} className={styles.hero}>
-          <motion.div className={styles.stage} style={{ scale }}>
+          <m.div className={styles.stage} style={reduce ? undefined : { scale }}>
             <div className={styles.glow} aria-hidden="true" />
             <div className={`container ${styles.heroInner}`}>
-              <motion.p className={`eyebrow ${styles.eyebrow}`} {...fade(0.3)}>
-                <span>(Legal)</span> {eyebrow}
-              </motion.p>
-              <RevealLines as="h1" className={styles.title} play={ready} delay={0.4} lines={titleLines} />
-              <motion.p className={styles.intro} {...fade(0.9)}>{intro}</motion.p>
-              <motion.span className={styles.updated} {...fade(1.05)}>
-                Last updated: {updated}
-              </motion.span>
+              <Breadcrumbs items={[{ name, path: `/${seoPage}` }]} className={styles.crumbs} />
+              <h1 className={`label ${styles.kicker}`}>{name}</h1>
+              <p className={styles.title}>{title}</p>
+              <p className={styles.intro}>{intro}</p>
+              <p className={styles.updated}>Last updated: {updated}</p>
             </div>
-            <motion.div className={styles.dim} style={{ opacity: dim }} aria-hidden="true" />
-          </motion.div>
+            <m.div className={styles.dim} style={reduce ? { opacity: 0 } : { opacity: dim }} aria-hidden="true" />
+          </m.div>
         </section>
 
         <section className={`sheet theme-ivory ${styles.body}`}>
@@ -66,13 +57,14 @@ export default function LegalLayout({ ready, seoPage, eyebrow, titleLines, intro
               <ol>
                 {sections.map((s, i) => (
                   <li key={s.id}>
-                    <button
+                    <SiteLink
+                      href={`/${seoPage}#${s.id}`}
                       className={`${styles.tocLink} ${active === s.id ? styles.tocActive : ''}`}
-                      onClick={() => scrollToTarget(`#${s.id}`)}
+                      aria-current={active === s.id ? 'location' : undefined}
                     >
-                      <span>{String(i + 1).padStart(2, '0')}</span>
+                      <span>{i + 1}.</span>
                       {s.title}
-                    </button>
+                    </SiteLink>
                   </li>
                 ))}
               </ol>
@@ -80,26 +72,18 @@ export default function LegalLayout({ ready, seoPage, eyebrow, titleLines, intro
 
             <article className={styles.doc}>
               {sections.map((s, i) => (
-                <motion.section
-                  key={s.id}
-                  id={s.id}
-                  className={styles.block}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={inView}
-                >
-                  <h2 className={styles.blockTitle}>
-                    <span>{String(i + 1).padStart(2, '0')}</span>
+                <section key={s.id} id={s.id} className={styles.block} aria-labelledby={`${s.id}-title`}>
+                  <h2 id={`${s.id}-title`} className={styles.blockTitle}>
+                    <span>{i + 1}.</span>
                     {s.title}
                   </h2>
                   <div className={styles.prose}>{s.content}</div>
-                </motion.section>
+                </section>
               ))}
             </article>
           </div>
         </section>
       </div>
-    </main>
+    </>
   );
 }

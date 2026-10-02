@@ -1,0 +1,34 @@
+.btn {
+  --bg: var(--champagne);
+  --fg: var(--ink);
+  --bg-hover: var(--champagne-lt);
+  --fg-hover: var(--ink);
+  --bd: var(--bg);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-ui);
+  border: 1px solid var(--bd);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.15s var(--ease);
+}
+
+.champagne { --bg: var(--champagne); --fg: var(--ink); --bg-hover: var(--ivory); --fg-hover: var(--ink); }
+.ink       { --bg: var(--ink); --fg: var(--ivory); --bg-hover: var(--burgundy); --fg-hover: var(--ivory); }
+.outline   { --bg: transparent; --fg: var(--ivory); --bd: rgba(244, 239, 232, 0.45); --bg-hover: var(--ivory); --fg-hover: var(--ink); }
+.outlineDark { --bg: transparent; --fg: var(--ink); --bd: rgba(13, 13, 13, 0.4); --bg-hover: var(--ink); --fg-hover: var(--ivory); }
+
+@media (hover: hover) {
+  .btn:hover { background: var(--bg-hover); color: var(--fg-hover); border-color: var(--bg-hover); }
+}
+
+.btn:active { transform: translateY(1px); }
