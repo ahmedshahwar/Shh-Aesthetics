@@ -64,8 +64,3 @@ desktop.ini
 *~
 
 .gitignore
-# Font files: desktop/trial files and the trial web-font preview must never be published
-canela-font-family/
-public/fonts-trial/
-*.otf
-canela-fonts/
