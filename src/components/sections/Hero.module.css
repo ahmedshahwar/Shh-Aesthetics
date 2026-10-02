@@ -47,7 +47,8 @@
   font-size: var(--fs-display);
   font-weight: 400;
   line-height: 1.02;
-  letter-spacing: -0.015em;
+  letter-spacing: var(--display-tracking);
+  word-spacing: var(--display-word-spacing, normal);
   color: var(--ivory);
   max-width: 9.5em;
 }
@@ -83,22 +84,41 @@
 .visual {
   position: relative;
   justify-self: end;
-  width: min(100%, 420px);
+  width: min(100%, 460px);
 }
 
+/*
+ * The logo's ring sits at x 46-910, y 29-918 of the 960px image. The image is cut
+ * just outside the ring, and a glow in the ring's own rose-gold fades out behind it.
+ */
 .arch {
+  --ring: 176, 138, 108;
+  position: relative;
   aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--ink-3);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+}
+.arch::before {
+  content: '';
+  position: absolute;
+  inset: -22%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side at 49.8% 49.3%,
+    rgba(var(--ring), 0.6) 60%,
+    rgba(var(--ring), 0.32) 68%,
+    rgba(var(--ring), 0.12) 82%,
+    rgba(var(--ring), 0) 100%
+  );
 }
 
 .archImg {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
+  -webkit-mask-image: radial-gradient(ellipse 45.4% 46.5% at 49.8% 49.3%, #000 98.5%, transparent 100%);
+  mask-image: radial-gradient(ellipse 45.4% 46.5% at 49.8% 49.3%, #000 98.5%, transparent 100%);
 }
 
 .dim {

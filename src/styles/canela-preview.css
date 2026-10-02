@@ -1,0 +1,94 @@
+/*
+ * Client demo: the whole site set in Canela, using Commercial Type's TRIAL files.
+ * Trial fonts are for evaluation and presentations only, never a published site, so this
+ * loads only when VITE_CANELA_PREVIEW=1 is set in .env.local (git-ignored, as are the files).
+ *
+ * Headlines use Canela; body copy, labels, navigation and buttons use Canela Text.
+ * Canela sets larger and heavier than Cormorant, so for headlines weight 400 maps to
+ * Canela Light, 500 to Regular and 600 to Medium; Canela Text runs one step lighter the same
+ * way (500 and 600 use Regular and Medium). The trial sets lack & : ( ) % @ /,
+ * which fall back to Georgia.
+ */
+
+/* Canela (headlines) */
+@font-face {
+  font-family: 'Canela';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts-trial/canela-light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts-trial/canela-light-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts-trial/canela-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts-trial/canela-regular-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts-trial/canela-medium.woff2') format('woff2');
+}
+
+/* Canela Text (body, labels, navigation, buttons) */
+@font-face {
+  font-family: 'Canela Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts-trial/canela-text-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela Text';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts-trial/canela-text-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts-trial/canela-text-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Canela Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts-trial/canela-text-medium.woff2') format('woff2');
+}
+
+:root {
+  --font-display: 'Canela', Georgia, serif;
+  --font-body: 'Canela Text', Georgia, serif;
+
+  --fs-display: clamp(2.8rem, 5.4vw, 4.6rem);
+  --fs-section: clamp(2rem, 3.5vw, 3rem);
+  --fs-title: clamp(1.45rem, 2.1vw, 1.95rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+
+  --display-tracking: 0;
+  --display-word-spacing: 0.06em;
+}
+
+/* Serif body copy reads better with a touch more leading */
+body { line-height: 1.7; }
