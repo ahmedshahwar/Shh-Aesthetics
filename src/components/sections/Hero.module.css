@@ -87,8 +87,8 @@
 }
 
 .arch {
-  aspect-ratio: 3 / 4;
-  border-radius: 999px 999px 0 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
   overflow: hidden;
   background: var(--ink-3);
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
@@ -98,7 +98,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 30%;
+  object-position: 50% 50%;
 }
 
 .dim {
