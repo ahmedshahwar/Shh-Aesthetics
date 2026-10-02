@@ -5,9 +5,6 @@ import './styles/tokens.css';
 import './styles/global.css';
 import App from './App';
 
-// Local-only font preview (see src/styles/canela-preview.css).
-if (import.meta.env.VITE_CANELA_PREVIEW === '1') import('./styles/canela-preview.css');
-
 const container = document.getElementById('root');
 const app = (
   <StrictMode>

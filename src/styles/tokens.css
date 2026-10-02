@@ -74,7 +74,6 @@
   --fs-button:    0.9375rem;
 
   --track-logo:  0.24em;
-  --display-tracking: -0.015em;
 
   /* Space */
   --gutter: clamp(1.25rem, 4vw, 3.5rem);

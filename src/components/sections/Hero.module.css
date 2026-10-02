@@ -1,4 +1,4 @@
-.hero {
+﻿.hero {
   position: sticky;
   top: 0;
   z-index: 0;
@@ -47,8 +47,7 @@
   font-size: var(--fs-display);
   font-weight: 400;
   line-height: 1.02;
-  letter-spacing: var(--display-tracking);
-  word-spacing: var(--display-word-spacing, normal);
+  letter-spacing: -0.015em;
   color: var(--ivory);
   max-width: 9.5em;
 }
