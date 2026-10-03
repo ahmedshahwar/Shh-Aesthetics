@@ -7,8 +7,10 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CookieConsent from './components/layout/CookieConsent';
 import ChatWidget from './components/layout/ChatWidget';
+import MobileActionBar from './components/layout/MobileActionBar';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
+import ServiceAreasPage from './pages/ServiceAreasPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -35,6 +37,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/service-areas" element={<ServiceAreasPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="*" element={<NotFoundPage />} />
@@ -42,6 +45,7 @@ export default function App() {
         </main>
 
         <Footer />
+        <MobileActionBar />
         <CookieConsent />
         <ChatWidget />
       </MotionConfig>

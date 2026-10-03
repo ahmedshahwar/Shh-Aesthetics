@@ -23,10 +23,13 @@ export default function Footer() {
             {NAV_LINKS.map((l) => (
               <SiteLink key={l.href} href={l.href} className={styles.link}>{l.label}</SiteLink>
             ))}
+            <SiteLink href="/service-areas" className={styles.link}>Service areas</SiteLink>
           </nav>
           <div className={styles.col}>
             <h2>Get in touch</h2>
-            <a href={CONTACT.phoneHref} className={styles.link}>{CONTACT.phone}</a>
+            <SiteLink href={CONTACT.bookUrl} className={styles.link}>{CONTACT.bookLabel}</SiteLink>
+            <a href={CONTACT.phoneHref} className={styles.link}>Call Kelly</a>
+            <a href={CONTACT.smsHref} className={styles.link}>Text Kelly</a>
             <a href={`mailto:${CONTACT.email}`} className={styles.link}>Email Kelly</a>
             <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>
             <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className={styles.link}>Facebook</a>
@@ -62,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <span>© {year} {BRAND.legal}</span>
+        <span suppressHydrationWarning>© {year} <span translate="no">{BRAND.legal}</span></span>
         <span>House calls in {CONTACT.areasShort} counties</span>
         <button type="button" className={styles.toTop} onClick={() => scrollToTop()}>
           Back to top

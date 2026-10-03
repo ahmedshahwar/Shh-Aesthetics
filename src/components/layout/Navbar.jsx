@@ -8,6 +8,13 @@ import Button from '../ui/Button';
 import SiteLink from '../ui/SiteLink';
 import styles from './Navbar.module.css';
 
+const MENU_LINKS = [
+  { label: 'Home', href: '/' },
+  ...NAV_LINKS.slice(0, -1),
+  { label: 'Service areas', href: '/service-areas' },
+  NAV_LINKS.at(-1),
+];
+
 export default function Navbar() {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
@@ -27,6 +34,7 @@ export default function Navbar() {
   const setMenu = (next) => {
     setOpen(next);
     setScrollLocked(next);
+    document.documentElement.toggleAttribute('data-menu-open', next);
   };
 
   useEffect(() => {
@@ -53,7 +61,7 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: EASE }}
       >
         <div className={styles.bar}>
-          <SiteLink href="/" className={styles.logo} onClick={() => setMenu(false)} aria-label="Shh Aesthetics home">
+          <SiteLink href="/" className={styles.logo} onClick={() => setMenu(false)} aria-label="Shh Aesthetics home" translate="no">
             {BRAND.name}
           </SiteLink>
 
@@ -107,7 +115,7 @@ export default function Navbar() {
             transition={{ duration: 0.7, ease: EASE_IN_OUT }}
           >
             <nav className={styles.overlayNav} aria-label="Mobile">
-              {[{ label: 'Home', href: '/' }, ...NAV_LINKS].map((l, i) => (
+              {MENU_LINKS.map((l, i) => (
                 <div key={l.href} className={styles.overlayMask}>
                   <m.div
                     initial={{ y: '110%' }}
@@ -124,7 +132,8 @@ export default function Navbar() {
             </nav>
             <div className={styles.overlayFoot}>
               <Button href={CONTACT.bookUrl} onClick={() => setMenu(false)}>{CONTACT.bookLabel}</Button>
-              <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+              <a href={CONTACT.phoneHref}>Call {CONTACT.phone}</a>
+              <a href={CONTACT.smsHref}>Text</a>
               <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </m.div>

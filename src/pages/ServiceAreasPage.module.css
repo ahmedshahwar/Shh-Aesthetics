@@ -1,0 +1,118 @@
+/* Hero: same dusk stage and type as the contact and legal pages */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--dusk);
+  padding: 9rem 0 calc(6rem + var(--radius-section));
+}
+.heroInner { position: relative; }
+.kicker { margin-top: 1.75rem; color: var(--champagne); }
+.title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.intro { max-width: 36rem; margin-top: 1.75rem; font-size: var(--fs-lead); line-height: 1.55; color: var(--stone); }
+
+.zip { margin-top: 2.25rem; }
+.jump { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.jumpLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 1px solid rgba(244, 239, 232, 0.35);
+  border-radius: var(--radius-ui);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.jumpLink:hover { background: var(--ivory); border-color: var(--ivory); color: var(--ink); }
+
+/* Counties */
+.counties { padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section)); }
+
+.county {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--line-light);
+  scroll-margin-top: 5rem;
+}
+.county:first-child { padding-top: 0; border-top: 0; }
+
+.countyText { max-width: 34rem; margin-top: 1.25rem; color: var(--taupe); }
+.countyActions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+
+.citiesTitle { margin-bottom: 0.75rem; font-size: var(--fs-label); font-weight: 600; color: var(--burgundy); }
+.cities { border-top: 1px solid var(--line-light); }
+.cities li {
+  padding-block: 0.8rem;
+  border-bottom: 1px solid var(--line-light);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+/* How it works */
+.how { padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section)); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.step { display: grid; gap: 0.6rem; align-content: start; }
+.stepNum {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--champagne);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--champagne);
+}
+.step h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; }
+.step p { max-width: 30ch; color: var(--stone); font-size: var(--fs-small); }
+
+.faqs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 clamp(2rem, 6vw, 5rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+.faq { padding-block: 1.5rem; border-top: 1px solid var(--line-dark); }
+.faq dt { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; }
+.faq dd { margin-top: 0.5rem; max-width: 36rem; color: var(--stone); font-size: var(--fs-small); }
+
+.more { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin-top: 1.5rem; }
+.more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--champagne);
+  text-underline-offset: 0.3em;
+}
+.more a:hover { color: var(--champagne); }
+
+@media (max-width: 900px) {
+  .hero { padding: 7rem 0 calc(4rem + var(--radius-section)); }
+  .county { grid-template-columns: 1fr; gap: 1.75rem; }
+  .steps { grid-template-columns: 1fr; }
+  .faqs { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .countyActions > a { flex: 1 1 100%; }
+}

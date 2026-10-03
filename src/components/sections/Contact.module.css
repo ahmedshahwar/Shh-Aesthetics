@@ -35,8 +35,13 @@
 }
 .details dd { font-family: var(--font-display); font-size: 1.2rem; white-space: nowrap; }
 .details a {
+  display: inline-block;
+  padding-block: 0.65rem;
+  margin-block: -0.65rem;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size 0.5s var(--ease);
+  background-origin: content-box;
+  background-clip: content-box;
 }
 .details a:hover { background-size: 100% 1px; }
 

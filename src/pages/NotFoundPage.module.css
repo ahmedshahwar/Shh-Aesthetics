@@ -4,18 +4,10 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--dusk);
   padding: 8rem 0 calc(5rem + var(--radius-section));
 }
 
-.glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(45% 55% at 80% 30%, rgba(201, 178, 140, 0.14), transparent 70%),
-    radial-gradient(40% 50% at 5% 95%, rgba(74, 32, 40, 0.6), transparent 70%);
-}
 
 .inner { position: relative; }
 

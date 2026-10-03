@@ -1,0 +1,46 @@
+.bar { display: none; }
+
+@media (max-width: 767px) {
+  .bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-action);
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+    background: rgba(13, 13, 13, 0.94);
+    border-top: 1px solid var(--line-dark);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: transform 0.35s var(--ease);
+  }
+
+  /* Leave the bottom-right corner free for the chat bubble */
+  .withChat { right: 76px; border-top-right-radius: var(--radius-ui); }
+
+  .away,
+  :global(html[data-menu-open]) .bar { transform: translateY(110%); }
+}
+
+.action {
+  display: grid;
+  place-items: center;
+  min-height: 3rem;
+  padding: 0 1.15rem;
+  border-radius: var(--radius-ui);
+  border: 1px solid rgba(244, 239, 232, 0.3);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ivory);
+  transition: transform 0.15s var(--ease);
+}
+.action:active { transform: translateY(1px); }
+
+.book {
+  background: var(--champagne);
+  border-color: var(--champagne);
+  color: var(--ink);
+}

@@ -10,12 +10,14 @@ export const CONTACT = {
   contactUrl: '/contact',
   bookUrl: '/contact#book',
   bookLabel: 'Book a free consult',
-  /* GoHighLevel booking widget: the src="" and id="" from GHL's embed code. */
+  /* GoHighLevel booking widget: the src="" and id="" from GHL’s embed code. */
   calendarEmbedUrl: 'https://api.leadconnectorhq.com/widget/booking/DAIUrM4FpFLGg0LDlzmd',
   calendarEmbedId: 'DAIUrM4FpFLGg0LDlzmd_1790031827490',
   email: 'kelly@shhaestheticswellness.com',
   phone: '(609) 221-2734',
   phoneHref: 'tel:+16092212734',
+  smsHref: 'sms:+16092212734',
+  replyTime: 'within one business day',
   address: '7901 4th St N, Ste 300, St. Petersburg, FL 33702',
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=7901+4th+St+N+Ste+300+St.+Petersburg+FL+33702',
   location: 'Southwest Florida',
@@ -24,10 +26,35 @@ export const CONTACT = {
   cities: ['Cape Coral', 'Fort Myers', 'Naples', 'Bonita Springs', 'Estero', 'Lehigh Acres', 'Sanibel', 'Marco Island', 'Punta Gorda', 'Port Charlotte'],
   instagram: 'https://www.instagram.com/shhaestheticswellness/',
   facebook: 'https://www.facebook.com/shhaestheticswellness',
-  /* GoHighLevel chat widget: paste the data-widget-id from GHL's chat embed code. Empty = no chat. */
+  /* GoHighLevel chat widget: paste the data-widget-id from GHL’s chat embed code. Empty = no chat. */
   chatWidgetId: '',
   disclaimer: 'Every treatment starts with a consultation. Results vary from person to person.',
 };
+
+/* Unique copy per county for the service-areas page. Facts only: no travel fees or times are stated. */
+export const SERVICE_AREAS = [
+  {
+    id: 'lee-county',
+    name: 'Lee County',
+    cities: ['Fort Myers', 'Cape Coral', 'Bonita Springs', 'Estero', 'Lehigh Acres', 'Sanibel'],
+    text:
+      'From downtown Fort Myers to the canals of Cape Coral and out to Sanibel, house calls across Lee County come to your home, condo or vacation rental. Same consultation, same care, wherever you are on the map.',
+  },
+  {
+    id: 'collier-county',
+    name: 'Collier County',
+    cities: ['Naples', 'Marco Island'],
+    text:
+      'In Naples and on Marco Island, appointments happen at home on your schedule. A quiet alternative to a busy med spa, with the same nurse practitioner at every visit.',
+  },
+  {
+    id: 'charlotte-county',
+    name: 'Charlotte County',
+    cities: ['Punta Gorda', 'Port Charlotte'],
+    text:
+      'Punta Gorda and Port Charlotte are on the route too. Book online, call or text, and Kelly will confirm a time that works for your part of the county.',
+  },
+];
 
 export const MEDICAL_DISCLAIMER =
   'The information on this website is general education, not medical advice. Treatments are provided only after a consultation with a licensed provider, and not every treatment is right for everyone. Individual results vary. In an emergency, call 911.';
@@ -115,10 +142,10 @@ export const HOUSE_CALL = {
 
 export const ABOUT = {
   paragraphs: [
-    'Kelly is a licensed nurse practitioner with a clinician\'s training and a firm opinion about “too much.” If something will not suit you, she will tell you, kindly and clearly.',
+    'Kelly is a licensed nurse practitioner with a clinician’s training and a firm opinion about “too much.” If something will not suit you, she will tell you, kindly and clearly.',
     'She makes house calls so care never feels rushed. Every visit starts with a real conversation, and every plan is built around the face you already have. No upsells, and no add-ons you did not ask for.',
   ],
-  rule: 'If you can tell, it\'s too much.',
+  rule: 'If you can tell, it’s too much.',
   credentials: [
     { label: 'Credentials', value: 'Licensed nurse practitioner' },
     { label: 'Approach', value: 'Less, placed well' },
@@ -128,12 +155,12 @@ export const ABOUT = {
 
 export const GALLERY_HEADING = 'Glow, on your terms.';
 
-/* Answered in Kelly's own voice. index.html mirrors these for search engines. */
+/* Answered in Kelly’s own voice. index.html mirrors these for search engines. */
 export const FAQS = [
   {
     id: 'house-calls',
     q: 'Wait, you come to my house?',
-    a: "Yes, that's the whole idea. I bring everything your treatment needs and set up wherever you're comfortable. No office, no waiting room, no small talk with a receptionist.",
+    a: "Yes, that’s the whole idea. I bring everything your treatment needs and set up wherever you’re comfortable. No office, no waiting room, no small talk with a receptionist.",
   },
   {
     id: 'free-consult',
@@ -143,7 +170,7 @@ export const FAQS = [
   {
     id: 'areas',
     q: 'What areas do you cover?',
-    a: "Lee, Charlotte and Collier counties, including Cape Coral, Fort Myers, Naples and nearby. Not sure you're in range? Ask, and I'll tell you when I can be there.",
+    a: "Lee, Charlotte and Collier counties, including Cape Coral, Fort Myers, Naples and nearby. Not sure you’re in range? Ask, and I’ll tell you when I can be there.",
   },
   {
     id: 'noticeable',
@@ -162,18 +189,18 @@ export const FAQS = [
   },
   {
     id: 'undecided',
-    q: "What if I don't know what I want?",
-    a: "That's what the consultation is for. We look, we talk, and we build a plan together. You never have to decide on the spot.",
+    q: "What if I don’t know what I want?",
+    a: "That’s what the consultation is for. We look, we talk, and we build a plan together. You never have to decide on the spot.",
   },
   {
     id: 'results',
     q: 'How long do results last?',
-    a: "It depends on the treatment and on you. As a rough guide, Botox tends to last three to four months and fillers often last longer. I'll give you an honest timeline for your face, not a sales pitch.",
+    a: "It depends on the treatment and on you. As a rough guide, Botox tends to last three to four months and fillers often last longer. I’ll give you an honest timeline for your face, not a sales pitch.",
   },
   {
     id: 'candidate',
     q: 'Is everyone a good candidate?',
-    a: "Not always. Some health conditions, medications and pregnancy rule out certain treatments. That's why every plan starts with your health history, and why I'll tell you if something isn't right for you.",
+    a: "Not always. Some health conditions, medications and pregnancy rule out certain treatments. That’s why every plan starts with your health history, and why I’ll tell you if something isn’t right for you.",
   },
   {
     id: 'provider',

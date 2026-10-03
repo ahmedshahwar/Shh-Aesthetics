@@ -43,12 +43,13 @@
 }
 
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .panel {
+    bottom: calc(4.25rem + env(safe-area-inset-bottom) + 0.5rem);
     width: calc(100vw - 1.5rem);
     grid-template-columns: 1fr;
     padding: 1.1rem;
   }
   .actions { grid-column: 1; grid-row: auto; margin-top: 0.5rem; }
-  .actions > * { flex: 1; }
+  .actions > * { flex: 1; min-height: 2.75rem; }
 }

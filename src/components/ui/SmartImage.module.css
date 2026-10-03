@@ -25,3 +25,6 @@
   line-height: 1.35;
   color: var(--champagne-lt);
 }
+
+/* One gentle, warm grade so the photos read as a single set */
+.img { filter: saturate(0.88) sepia(0.08) contrast(1.02); }

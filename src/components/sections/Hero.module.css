@@ -27,14 +27,14 @@
   inset: 0;
   background:
     radial-gradient(50% 60% at 78% 45%, rgba(201, 178, 140, 0.16), transparent 70%),
-    radial-gradient(40% 50% at 8% 90%, rgba(74, 32, 40, 0.55), transparent 70%);
+    radial-gradient(40% 50% at 8% 90%, rgba(102, 65, 52, 0.45), transparent 70%);
   pointer-events: none;
 }
 
 .grid {
   position: relative;
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(2rem, 5vw, 5rem);
   padding-top: 5rem;
@@ -68,6 +68,9 @@
 }
 
 .textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   font-size: var(--fs-button);
   font-weight: 600;
   color: var(--ivory);
@@ -80,14 +83,25 @@
 }
 .textLink:hover { color: var(--champagne); }
 
+.trust {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 30rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-dark);
+  font-size: var(--fs-label);
+  color: var(--stone);
+}
+
 .visual {
   position: relative;
   justify-self: end;
-  width: min(100%, 460px);
+  width: min(100%, 560px);
 }
 
 /*
- * The logo's ring sits at x 46-910, y 29-918 of the 960px image. The image is cut
+ * The logo's ring sits at 4.8-94.8% across and 3-95.6% down the image. The image is cut
  * just outside the ring, and a glow in the ring's own rose-gold fades out behind it.
  */
 .arch {
@@ -138,8 +152,9 @@
   .visual {
     grid-row: 1;
     justify-self: center;
-    width: min(60vw, 250px);
+    width: min(72vw, 300px);
   }
   .sub { margin-top: 1.25rem; }
   .ctas { margin-top: 1.75rem; flex-wrap: wrap; gap: 1.25rem; }
+  .trust { margin-top: 1.5rem; }
 }

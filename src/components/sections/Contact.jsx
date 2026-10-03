@@ -18,10 +18,10 @@ export default function Contact() {
     <section id="contact" className={`sheet theme-champagne ${styles.section}`} aria-labelledby="contact-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.copy}>
-          <RevealLines id="contact-title" className={`heading ${styles.heading}`} lines={["Your secret's safe with me."]} />
+          <RevealLines id="contact-title" className={`heading ${styles.heading}`} lines={["Your secret’s safe with me."]} />
           <m.p className={styles.sub} variants={fadeUp} initial="hidden" whileInView="visible" viewport={inView}>
             Book a free consultation at home. Bring your questions and your screenshots.
-            I'll bring everything else.
+            I’ll bring everything else.
           </m.p>
 
           <div className={styles.cta}>

@@ -6,7 +6,7 @@ const GHL_EMBED_SCRIPT = 'https://link.msgsndr.com/js/form_embed.js';
 /**
  * GoHighLevel booking widget.
  * Give it the widget URL and id (CONTACT.calendarEmbedUrl / calendarEmbedId) and it renders the iframe
- * plus GHL's auto-resize script.
+ * plus GHL’s auto-resize script.
  */
 export default function BookingCalendar({ src, id = 'shh-booking-calendar' }) {
   useEffect(() => {

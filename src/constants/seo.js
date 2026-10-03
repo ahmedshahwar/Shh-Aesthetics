@@ -18,6 +18,12 @@ export const PAGE_SEO = {
     description:
       'Book a free at-home consultation with Kelly, a licensed nurse practitioner, in Cape Coral, Fort Myers, Naples and across Lee, Charlotte and Collier counties.',
   },
+  serviceAreas: {
+    path: '/service-areas',
+    title: 'In-Home Botox in Lee, Collier & Charlotte County | Shh',
+    description:
+      'Mobile Botox, fillers and wellness at home in Fort Myers, Cape Coral, Naples, Bonita Springs, Estero, Marco Island, Punta Gorda and nearby. Free consultation.',
+  },
   privacy: {
     path: '/privacy',
     title: 'Privacy Policy | Shh Aesthetics & Wellness',
@@ -38,4 +44,10 @@ export const PAGE_SEO = {
   },
 };
 
-export const ROUTE_PAGES = { '/': 'home', '/contact': 'contact', '/privacy': 'privacy', '/terms': 'terms' };
+export const ROUTE_PAGES = {
+  '/': 'home',
+  '/contact': 'contact',
+  '/service-areas': 'serviceAreas',
+  '/privacy': 'privacy',
+  '/terms': 'terms',
+};

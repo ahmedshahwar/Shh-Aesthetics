@@ -3,12 +3,13 @@ import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import SiteLink from '../ui/SiteLink';
 import Breadcrumbs from '../seo/Breadcrumbs';
 import Seo from '../seo/Seo';
+import HeroBackdrop from '../ui/HeroBackdrop';
 import styles from './LegalLayout.module.css';
 
 /**
  * Shared shell for the Privacy Policy and Terms pages:
  * pinned dark hero, then an ivory sheet with a sticky table of contents
- * (highlights the section you're reading) beside the document.
+ * (highlights the section you’re reading) beside the document.
  *
  * sections: [{ id, title, content: <JSX> }]
  */
@@ -38,7 +39,7 @@ export default function LegalLayout({ seoPage, name, title, intro, updated, sect
       <div>
         <section id="top" ref={heroRef} className={styles.hero}>
           <m.div className={styles.stage} style={reduce ? undefined : { scale }}>
-            <div className={styles.glow} aria-hidden="true" />
+            <HeroBackdrop tone="dusk" still />
             <div className={`container ${styles.heroInner}`}>
               <Breadcrumbs items={[{ name, path: `/${seoPage}` }]} className={styles.crumbs} />
               <h1 className={`label ${styles.kicker}`}>{name}</h1>

@@ -2,6 +2,7 @@ import { CONTACT } from '../constants/content';
 import Seo from '../components/seo/Seo';
 import Button from '../components/ui/Button';
 import SiteLink from '../components/ui/SiteLink';
+import HeroBackdrop from '../components/ui/HeroBackdrop';
 import styles from './NotFoundPage.module.css';
 
 const SUGGESTIONS = [
@@ -14,8 +15,8 @@ const SUGGESTIONS = [
 export default function NotFoundPage() {
   return (
     <section className={styles.page} aria-labelledby="nf-title">
+      <HeroBackdrop tone="dusk" still />
       <Seo page="notFound" />
-      <div className={styles.glow} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <h1 id="nf-title" className={`label ${styles.kicker}`}>Page not found (error 404)</h1>
         <p className={styles.title}>This page kept the secret a little too well.</p>

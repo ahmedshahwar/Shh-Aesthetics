@@ -2,21 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://shhaestheticswellness.com/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <image:image>
       <image:loc>https://shhaestheticswellness.com/og-image.jpg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://shhaestheticswellness.com/contact</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://shhaestheticswellness.com/service-areas</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://shhaestheticswellness.com/privacy</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
   </url>
   <url>
     <loc>https://shhaestheticswellness.com/terms</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-03</lastmod>
   </url>
 </urlset>

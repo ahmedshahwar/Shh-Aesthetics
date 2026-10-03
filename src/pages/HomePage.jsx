@@ -8,6 +8,7 @@ import HouseCall from '../components/sections/HouseCall';
 import Gallery from '../components/sections/Gallery';
 import About from '../components/sections/About';
 import Faq from '../components/sections/Faq';
+import Reviews from '../components/sections/Reviews';
 import Contact from '../components/sections/Contact';
 
 const FAQ_SCHEMA = {
@@ -35,6 +36,7 @@ export default function HomePage() {
       <Gallery />
       <About />
       <Faq />
+      <Reviews />
       <Contact />
     </>
   );

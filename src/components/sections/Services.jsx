@@ -5,9 +5,22 @@ import { fadeUp, inView } from '../../lib/motion';
 import RevealLines from '../ui/RevealLines';
 import SmartImage from '../ui/SmartImage';
 import Button from '../ui/Button';
+import PlaceholderTag from '../ui/PlaceholderTag';
+import { SHOW_PLACEHOLDERS, STARTING_PRICES } from '../../constants/placeholders';
 import styles from './Services.module.css';
 
 const BUTTON_BY_THEME = { dark: 'outline', light: 'outlineDark', gold: 'outlineDark' };
+
+function StartingPrice({ id }) {
+  const price = STARTING_PRICES[id];
+  if (price) return <p className={styles.price}>Starting at ${price}</p>;
+  if (!SHOW_PLACEHOLDERS) return null;
+  return (
+    <p className={styles.price}>
+      Starting at $— <PlaceholderTag />
+    </p>
+  );
+}
 
 function ServiceCard({ service, index, total, progress, reduce }) {
   // Earlier cards shrink back slightly as later ones stack on top of them.
@@ -33,6 +46,7 @@ function ServiceCard({ service, index, total, progress, reduce }) {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            <StartingPrice id={service.id} />
 
             <Button href={CONTACT.bookUrl} variant={BUTTON_BY_THEME[service.theme]} className={styles.cta}>
               {service.cta}

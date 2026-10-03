@@ -3,6 +3,7 @@ import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { CONTACT, CONTACT_PAGE } from '../../../constants/content';
 import Breadcrumbs from '../../seo/Breadcrumbs';
 import Button from '../../ui/Button';
+import HeroBackdrop from '../../ui/HeroBackdrop';
 import styles from './ContactHero.module.css';
 
 const ROWS = [
@@ -22,8 +23,7 @@ export default function ContactHero() {
   return (
     <section id="top" ref={ref} className={styles.hero} aria-labelledby="contact-page-title">
       <m.div className={styles.stage} style={reduce ? undefined : { scale }}>
-        <div className={styles.glow} aria-hidden="true" />
-
+        <HeroBackdrop tone="dusk" still />
         <div className={`container ${styles.grid}`}>
           <div className={styles.copy}>
             <Breadcrumbs items={[{ name: 'Contact', path: '/contact' }]} className={styles.crumbs} />
@@ -31,7 +31,7 @@ export default function ContactHero() {
             <h1 id="contact-page-title" className={`label ${styles.kicker}`}>
               Book a free in-home consultation
             </h1>
-            <p className={styles.title}>Spill it. I won't.</p>
+            <p className={styles.title}>Spill it. I won’t.</p>
 
             <p className={styles.intro}>{CONTACT_PAGE.intro}</p>
             {CONTACT.chatWidgetId && (

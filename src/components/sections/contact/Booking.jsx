@@ -18,10 +18,10 @@ export default function Booking() {
       <div className={`container ${styles.grid}`}>
         <div className={styles.intro}>
           <div>
-            <RevealLines id="book-title" className="heading" lines={["Pick a time. I'll bring the glow."]} />
+            <RevealLines id="book-title" className="heading" lines={["Pick a time. I’ll bring the glow."]} />
             <m.p className={styles.lede} variants={fadeUp} initial="hidden" whileInView="visible" viewport={inView}>
-              Choose a time that suits you and tell me a little about what you're after.
-              I'll arrive with everything else. No phone tag, no waiting room.
+              Choose a time that suits you and tell me a little about what you’re after.
+              I’ll arrive with everything else. No phone tag, no waiting room.
             </m.p>
           </div>
 

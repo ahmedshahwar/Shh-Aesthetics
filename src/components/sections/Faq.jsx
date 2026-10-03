@@ -10,7 +10,7 @@ export default function Faq() {
     <section id="faq" className={`sheet theme-ink ${styles.section}`} aria-labelledby="faq-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.side}>
-          <RevealLines id="faq-title" className={`heading ${styles.heading}`} lines={["Questions you're too polite to ask."]} />
+          <RevealLines id="faq-title" className={`heading ${styles.heading}`} lines={["Questions you’re too polite to ask."]} />
           <p className={styles.note}>
             Something else on your mind? Call or text{' '}
             <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>, or ask me at your free consultation.

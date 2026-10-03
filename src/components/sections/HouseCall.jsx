@@ -6,6 +6,8 @@ import { clipReveal, fadeUp, inView } from '../../lib/motion';
 import RevealLines from '../ui/RevealLines';
 import Button from '../ui/Button';
 import SmartImage from '../ui/SmartImage';
+import SiteLink from '../ui/SiteLink';
+import ZipChecker from '../ui/ZipChecker';
 import styles from './HouseCall.module.css';
 
 export default function HouseCall() {
@@ -29,6 +31,10 @@ export default function HouseCall() {
             <p>
               Lee, Charlotte and Collier counties, including {CONTACT.cities.slice(0, -1).join(', ')} and{' '}
               {CONTACT.cities.at(-1)}.
+            </p>
+            <ZipChecker className={styles.zip} />
+            <p className={styles.areaLinks}>
+              <SiteLink href="/service-areas">See every area I serve</SiteLink>
             </p>
           </div>
 

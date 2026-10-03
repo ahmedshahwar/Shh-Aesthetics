@@ -6,6 +6,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* Keep anchored and keyboard-focused content clear of the fixed header */
+  scroll-padding-top: 5rem;
 }
 
 /* Smooth-scroll library states */
@@ -37,6 +40,8 @@ body::after {
 
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a, button { touch-action: manipulation; }
+[href^='tel:'], [href^='sms:'] { font-variant-numeric: tabular-nums; }
 img { display: block; max-width: 100%; height: auto; }
 ul, ol { list-style: none; }
 em { font-style: italic; }
@@ -91,6 +96,7 @@ section[id] { scroll-margin-top: 4.5rem; }
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
+/* <main> is only a programmatic skip-link target, never a control */
 main:focus { outline: none; }
 
 .skip-link {
@@ -112,7 +118,13 @@ main:focus { outline: none; }
 /* Breadcrumbs on inner pages */
 .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: var(--fs-label); color: var(--stone); }
 .breadcrumbs li + li::before { content: '/'; margin-right: 0.4rem; opacity: 0.6; }
-.breadcrumbs a { color: var(--ivory); transition: color 0.2s var(--ease); }
+.breadcrumbs a {
+  display: inline-block;
+  padding-block: 0.8rem;
+  margin-block: -0.8rem;
+  color: var(--ivory);
+  transition: color 0.2s var(--ease);
+}
 .breadcrumbs a:hover { color: var(--champagne); }
 .breadcrumbs [aria-current='page'] { color: var(--champagne); }
 
@@ -121,6 +133,11 @@ main:focus { outline: none; }
 :focus-visible { outline: 2px solid var(--champagne); outline-offset: 4px; border-radius: 2px; }
 .theme-ivory :focus-visible,
 .theme-champagne :focus-visible { outline-color: var(--burgundy); }
+
+/* On phones the Book / Call / Text bar covers the bottom of the page; keep the footer clear of it */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(4.25rem + env(safe-area-inset-bottom)); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -31,6 +31,25 @@
   font-size: var(--fs-small);
   color: var(--ink);
 }
+.zip { margin-top: 1rem; }
+.areaLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.75rem;
+}
+.areaLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-decoration-color: rgba(74, 32, 40, 0.35);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.areaLinks a:hover { text-decoration-color: var(--burgundy); }
 
 /* Steps with a self-drawing route line */
 .steps {

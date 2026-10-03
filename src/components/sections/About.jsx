@@ -29,7 +29,7 @@ export default function About() {
             ))}
             <m.blockquote className={styles.rule} variants={fadeUp}>
               <p>{ABOUT.rule}</p>
-              <cite>Kelly's rule</cite>
+              <cite>Kelly’s rule</cite>
             </m.blockquote>
           </m.div>
 

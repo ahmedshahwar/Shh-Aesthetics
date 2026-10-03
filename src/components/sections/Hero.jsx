@@ -4,6 +4,7 @@ import { CONTACT } from '../../constants/content';
 import { IMAGES } from '../../constants/images';
 import Button from '../ui/Button';
 import SiteLink from '../ui/SiteLink';
+import HeroBackdrop from '../ui/HeroBackdrop';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -19,6 +20,7 @@ export default function Hero() {
     <section id="top" ref={ref} className={styles.hero} aria-labelledby="home-title">
       <m.div className={styles.stage} style={reduce ? undefined : { scale }}>
         <div className={styles.glow} aria-hidden="true" />
+        <HeroBackdrop />
 
         <div className={`container ${styles.grid}`}>
           <div className={styles.copy}>
@@ -32,12 +34,16 @@ export default function Hero() {
 
             <p className={styles.sub}>
               Natural results from a licensed nurse practitioner who comes to your home.
-              They'll say you look rested. You'll say nothing.
+              They’ll say you look rested. You’ll say nothing.
             </p>
 
-            <div className={styles.ctas}>
+            <div className={styles.ctas} data-hide-action-bar>
               <Button href={CONTACT.bookUrl}>{CONTACT.bookLabel}</Button>
               <SiteLink href="/#services" className={styles.textLink}>See treatments</SiteLink>
+            </div>
+
+            <div className={styles.trust}>
+              <p>Licensed nurse practitioner. Free in-home consultation.</p>
             </div>
           </div>
 
@@ -47,8 +53,8 @@ export default function Hero() {
                 src={IMAGES.hero}
                 alt="Shh Aesthetics logo: a woman holding a finger to her lips, with the words beauty is our little secret"
                 className={styles.archImg}
-                width="960"
-                height="960"
+                width="1200"
+                height="1200"
                 fetchPriority="high"
                 decoding="async"
               />

@@ -47,6 +47,7 @@
   --ink:          #0D0D0D;
   --ink-2:        #141312;
   --ink-3:        #1C1A18;
+  --dusk:         #0F0D0F; /* inner-page heroes, under the dusk backdrop */
   --ivory:        #F4EFE8;
   --ivory-2:      #EAE2D6;
   --stone:        #B8AEA3;
@@ -83,6 +84,7 @@
   --radius-ui: 10px;
 
   /* Layers */
+  --z-action:  800;
   --z-menu:    900;
   --z-header:  1000;
   --z-consent: 1100;

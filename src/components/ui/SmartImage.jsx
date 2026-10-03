@@ -11,7 +11,15 @@ function responsive(src) {
 }
 
 /** Lazy image with a branded backdrop. If the file fails to load, its alt text is shown in its place. */
-export default function SmartImage({ src, alt, className = '', eager = false, sizes = '(max-width: 900px) 100vw, 50vw' }) {
+export default function SmartImage({
+  src,
+  alt,
+  className = '',
+  eager = false,
+  sizes = '(max-width: 900px) 100vw, 50vw',
+  width = 1200,
+  height = 1500,
+}) {
   const [failed, setFailed] = useState(false);
 
   return (
@@ -24,6 +32,8 @@ export default function SmartImage({ src, alt, className = '', eager = false, si
           {...responsive(src)}
           sizes={sizes}
           alt={alt}
+          width={width}
+          height={height}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           onError={() => setFailed(true)}

@@ -1,0 +1,123 @@
+.section {
+  padding: var(--section-y) 0 calc(var(--section-y) + var(--radius-section));
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* Notes pinned to a board: each card a different tone, slightly askew */
+.track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-block: 1rem 2rem;
+}
+
+.card {
+  --bg: #FFFDF9;
+  --fg: var(--ink);
+  --muted: var(--taupe);
+
+  min-height: 290px;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: var(--bg);
+  color: var(--fg);
+  rotate: var(--tilt);
+  transition: rotate 0.6s var(--ease), scale 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+.card figure { height: 100%; display: flex; flex-direction: column; }
+
+@media (hover: hover) {
+  .card:hover {
+    rotate: 0deg;
+    scale: 1.03;
+    box-shadow: 0 30px 60px rgba(13, 13, 13, 0.16);
+  }
+}
+
+.paper { --bg: #FFFDF9; }
+.ink { --bg: var(--ink); --fg: var(--ivory); --muted: var(--stone); }
+.champagne { --bg: var(--champagne); --muted: rgba(13, 13, 13, 0.72); }
+.wine { --bg: var(--burgundy); --fg: var(--ivory); --muted: rgba(244, 239, 232, 0.78); }
+
+.treatment {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Reviews are set in the sans, like something a real person typed */
+.text { flex: 1; margin: 1.25rem 0 1.75rem; }
+.text p { font-size: 1.02rem; line-height: 1.65; }
+
+.who { display: flex; align-items: center; gap: 0.75rem; }
+.avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+.name { font-size: 0.875rem; font-weight: 600; }
+
+/* Before and after */
+.results { margin-top: clamp(3rem, 7vw, 5rem); }
+.resultsTitle {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  font-weight: 400;
+}
+.pairs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.pair { display: grid; gap: 0.75rem; }
+.pairImgs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+.pairImgs img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.pairSlot {
+  display: grid;
+  place-items: end start;
+  aspect-ratio: 4 / 3;
+  padding: 1rem;
+  background: var(--ivory-2);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--taupe);
+}
+.pairCaption { font-size: var(--fs-small); color: var(--taupe); }
+.disclaimer { margin-top: 1.5rem; font-size: 0.8125rem; color: var(--taupe); }
+
+@media (max-width: 900px) {
+  .track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-inline: var(--gutter);
+    max-width: none;
+    scrollbar-width: none;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 min(82vw, 340px); scroll-snap-align: center; rotate: 0deg; }
+  .pairs { grid-template-columns: 1fr; }
+}

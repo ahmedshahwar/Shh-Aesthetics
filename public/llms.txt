@@ -38,5 +38,6 @@
 
 - [Home](https://shhaestheticswellness.com/): treatments, house calls, about Kelly, FAQ
 - [Contact and booking](https://shhaestheticswellness.com/contact): online booking calendar and contact details
+- [Service areas](https://shhaestheticswellness.com/service-areas): cities served in Lee, Collier and Charlotte counties
 - [Privacy policy](https://shhaestheticswellness.com/privacy)
 - [Terms and conditions](https://shhaestheticswellness.com/terms): includes the medical disclaimer
